@@ -29,21 +29,21 @@ def create_graph(input_file):
     return graph, edges, vertices
 
 
-def minimum_distance(dist, Q):
+def minimum_distance(dist, q):
     vertex = -1
     min_dist = float("inf")
-    for v in Q:
+    for v in q:
         if dist[v] < min_dist:
             min_dist = dist[v]
             vertex = v
-    return vertex;
+    return vertex
 
 def dijkstra(graph, edges, vertices, source, target):
 
     paths = []
 
     # TODO: este range tem de ser algum tipo número de vértices usados?
-    for iteration in range(1):
+    for iteration in range(0, 1):
 
         dist = dict()
         previous = dict()
@@ -53,17 +53,17 @@ def dijkstra(graph, edges, vertices, source, target):
             previous[vertex] = None
 
         dist[source] = 0
-        Q = set(vertices)
+        q = set(vertices)
 
-        while len(Q) > 0:
-            u = minimum_distance(dist, Q)
+        while len(q) > 0:
+            u = minimum_distance(dist, q)
 
             # terminate if we reach the target
             if u == target:
                 paths.append(previous)
                 break
 
-            Q.remove(u)
+            q.remove(u)
 
             if dist[u] == float('inf'):
                 break
@@ -84,23 +84,17 @@ def calculate_path_weight(path):
     return len(set(path))  # set removes duplicates
 
 
-def list_path_from_dict_path(dict_path, source):
+def list_path_from_dict_path(dict_path, source, target):
 
-    reversed_dict = {}
-    for key, vals in dict_path.items():
-        if vals is not None:
-            if vals
-            for val in vals:
-                reversed_dict[val] = key
-
-    print(reversed_dict)
-
-    node = source
+    node = target
     list_path = []
-    while node is not None:
+    while node is not None and node is not source:
         print(node)
         list_path.append(node)
-        node = reversed_dict[node]
+        node = dict_path[node]
+
+    list_path.append(source)
+    list_path.reverse()  # actual order
     return list_path
 
 
@@ -133,7 +127,7 @@ if __name__ == '__main__':
         for path in paths:
 
             print(path)
-            path = list_path_from_dict_path(path, source)
+            path = list_path_from_dict_path(path, source, target)
             print(path)
 
             # number of vertices traverssed
@@ -146,9 +140,10 @@ if __name__ == '__main__':
             elif weight == min_weight:
                 solutions.append(path)
 
+        output_file.write(str(solutions))
+
         input_file.close()
         output_file.close()
 
     else:
         print("shortest_path expects arguments: <input file>")
-
