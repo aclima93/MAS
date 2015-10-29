@@ -1,4 +1,4 @@
-__author__ = 'aclima'
+__authors__ = 'aclima, ilpetronilho, pjaneiro'
 
 import sys
 
@@ -40,48 +40,44 @@ def minimum_distance(dist, q):
 
 def dijkstra(graph, edges, vertices, source, target):
 
-    paths = []
+    dist = dict()
+    previous = dict()
 
-    # TODO: este range tem de ser algum tipo número de vértices usados?
-    for iteration in range(0, 1):
+    for vertex in vertices:
+        dist[vertex] = float("inf")
+        previous[vertex] = None
 
-        dist = dict()
-        previous = dict()
+    dist[source] = 0
+    q = set(vertices)
 
-        for vertex in vertices:
-            dist[vertex] = float("inf")
-            previous[vertex] = None
+    while len(q) > 0:
+        u = minimum_distance(dist, q)
 
-        dist[source] = 0
-        q = set(vertices)
+        # terminate if we reach the target
+        if u == target:
+            return previous
 
-        while len(q) > 0:
-            u = minimum_distance(dist, q)
+        q.remove(u)
 
-            # terminate if we reach the target
-            if u == target:
-                paths.append(previous)
-                break
+        if dist[u] == float('inf'):
+            break
 
-            q.remove(u)
+        neighbours = graph[u]
+        for vertex in neighbours:
+            alt = dist[u] + 1  # dist_between(graph, u, vertex) is always 1
+            if alt < dist[vertex]:
+                dist[vertex] = alt
+                previous[vertex] = u
 
-            if dist[u] == float('inf'):
-                break
+    return previous
 
-            neighbours = graph[u]
-            for vertex in neighbours:
-                alt = dist[u] + 1  # dist_between(graph, u, vertex) is always 1
-                if alt < dist[vertex]:
-                    dist[vertex] = alt
-                    previous[vertex] = u
-
-        paths.append(previous)
-
-    return paths
 
 # number of nodes it contains, including the source and terminal nodes
 def calculate_path_weight(path):
-    return len(set(path))  # set removes duplicates
+    num_nodes_traversed = len(path)  # number of nodes traversed
+    num_unique_nodes = len(set(path))  # number of unique nodes traversed
+    weight = num_unique_nodes - (num_nodes_traversed - num_unique_nodes)  # penalize paths that repeat nodes
+    return weight
 
 
 def list_path_from_dict_path(dict_path, source, target):
@@ -89,13 +85,44 @@ def list_path_from_dict_path(dict_path, source, target):
     node = target
     list_path = []
     while node is not None and node is not source:
-        print(node)
         list_path.append(node)
         node = dict_path[node]
 
     list_path.append(source)
     list_path.reverse()  # actual order
     return list_path
+
+def find_dijkstra_solution(graph, edges, vertices, source, target, output_file):
+
+    path = dijkstra(graph, edges, vertices, source, target)
+    path = list_path_from_dict_path(path, source, target)
+
+    output_file.write("\n\nDijkstra Shortest Path: " + str(path) + '\n')
+    output_file.write("Dijkstra Shortest Path Weight: " + str(calculate_path_weight(path)) + '\n')
+
+
+def visit_neighbours(graph, paths, path, node, target):
+
+    if graph[node] is not None:
+        for neighbour in graph[node]:
+            path.append(neighbour)
+            paths = visit_neighbours(graph, paths, path.copy(), neighbour, target)
+            path = path[:-1]
+    else:
+        paths.append(path)
+
+    return paths
+
+
+def find_all_solutions(graph, edges, vertices, source, target, output_file):
+
+    paths = visit_neighbours(graph, [], [source], source, target)
+
+    output_file.write("\n\nAll Paths: \n")
+    for path in paths:
+        output_file.write(str(path) + '\n')
+
+
 
 
 if __name__ == '__main__':
@@ -108,41 +135,25 @@ if __name__ == '__main__':
         output_file = str(input_file) + str(".txt")
 
         input_file = open(input_file, 'r')
-        output_file = open(output_file, 'w')
-
         graph, edges, vertices = create_graph(input_file)
+        input_file.close()
 
         # start and end nodes of our graph are defined by the corresponding minimum and maximum node numbers
         vertices.sort()
         source = vertices[0]
         target = vertices[-1]
+        graph[target] = None
 
-        # find solutions
-        paths = dijkstra(graph, edges, vertices, source, target)
-        solutions = []
-        min_weight = len(vertices) + 1  # no shortest path can traverse more than the number of vertices
+        # find solutions and write solutions
+        output_file = open(output_file, 'w')
 
-        print(paths)
+        # shortest path (dijkstra)
+        find_dijkstra_solution(graph, edges, vertices, source, target, output_file)
 
-        for path in paths:
+        find_all_solutions(graph, edges, vertices, source, target, output_file)
 
-            print(path)
-            path = list_path_from_dict_path(path, source, target)
-            print(path)
+        # largest path (ford-fulkerson)
 
-            # number of vertices traverssed
-            weight = calculate_path_weight(path)
-
-            if weight < min_weight:
-                min_weight = weight
-                solutions = [path]
-
-            elif weight == min_weight:
-                solutions.append(path)
-
-        output_file.write(str(solutions))
-
-        input_file.close()
         output_file.close()
 
     else:
