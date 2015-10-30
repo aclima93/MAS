@@ -114,13 +114,46 @@ def visit_neighbours(graph, paths, path, node, target):
     return paths
 
 
+# calculates node coverage
+def node_coverage(path):
+    return len(set(path))
+
+
+# calculates edge coverage
+def edge_coverage(edges, path):
+    counter = 0
+
+    for i in range(len(path)-1):
+        edge = [path[i], path[i+1]]
+        if edge in edges:
+            counter = counter + 1
+
+    return counter
+
+
+# calculates edge-pair coverage
+def edge_pair_coverage(edges, path):
+    counter = 0
+
+    for i in range(len(path)-2):
+        left_edge = [path[i], path[i+1]]
+        right_edge = [path[i+1], path[i+2]]
+        if (left_edge in edges) and (right_edge in edges):
+            counter = counter + 1
+
+    return counter
+
 def find_all_solutions(graph, edges, vertices, source, target, output_file):
 
     paths = visit_neighbours(graph, [], [source], source, target)
 
     output_file.write("\n\nAll Paths: \n")
     for path in paths:
-        output_file.write(str(path) + '\n')
+        output_file.write("Path: " + str(path) + '\n')
+        output_file.write("NC: " + str(node_coverage(path)) + '\n')
+        output_file.write("EC: " + str(edge_coverage(edges, path)) + '\n')
+        output_file.write("EPC: " + str(edge_pair_coverage(edges, path)) + '\n')
+        output_file.write('\n')
 
 
 
