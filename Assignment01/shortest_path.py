@@ -2,6 +2,7 @@ __authors__ = 'aclima, ilpetronilho, pjaneiro'
 
 import sys
 
+
 # create graph from input file node pairs
 def create_graph(input_file):
     graph = {}
@@ -28,51 +29,9 @@ def create_graph(input_file):
 
     return graph, edges, vertices
 
-
-def minimum_distance(dist, q):
-    vertex = -1
-    min_dist = float("inf")
-    for v in q:
-        if dist[v] < min_dist:
-            min_dist = dist[v]
-            vertex = v
-    return vertex
-
-def dijkstra(graph, edges, vertices, source, target):
-
-    dist = dict()
-    previous = dict()
-
-    for vertex in vertices:
-        dist[vertex] = float("inf")
-        previous[vertex] = None
-
-    dist[source] = 0
-    q = set(vertices)
-
-    while len(q) > 0:
-        u = minimum_distance(dist, q)
-
-        # terminate if we reach the target
-        if u == target:
-            return previous
-
-        q.remove(u)
-
-        if dist[u] == float('inf'):
-            break
-
-        neighbours = graph[u]
-        for vertex in neighbours:
-            alt = dist[u] + 1  # dist_between(graph, u, vertex) is always 1
-            if alt < dist[vertex]:
-                dist[vertex] = alt
-                previous[vertex] = u
-
-    return previous
-
-
-# number of nodes it contains, including the source and terminal nodes
+'''
+number of nodes it contains, including the source and terminal nodes
+'''
 def calculate_path_weight(path):
     num_nodes_traversed = len(path)  # number of nodes traversed
     num_unique_nodes = len(set(path))  # number of unique nodes traversed
@@ -81,7 +40,6 @@ def calculate_path_weight(path):
 
 
 def list_path_from_dict_path(dict_path, source, target):
-
     node = target
     list_path = []
     while node is not None and node is not source:
@@ -92,17 +50,8 @@ def list_path_from_dict_path(dict_path, source, target):
     list_path.reverse()  # actual order
     return list_path
 
-def find_dijkstra_solution(graph, edges, vertices, source, target, output_file):
-
-    path = dijkstra(graph, edges, vertices, source, target)
-    path = list_path_from_dict_path(path, source, target)
-
-    output_file.write("\n\nDijkstra Shortest Path: " + str(path) + '\n')
-    output_file.write("Dijkstra Shortest Path Weight: " + str(calculate_path_weight(path)) + '\n')
-
 
 def visit_neighbours(graph, paths, path, node, target):
-
     if graph[node] is not None:
         for neighbour in graph[node]:
             path.append(neighbour)
@@ -123,10 +72,10 @@ def node_coverage(path):
 def edge_coverage(edges, path):
     counter = 0
 
-    for i in range(len(path)-1):
-        edge = [path[i], path[i+1]]
+    for i in range(len(path) - 1):
+        edge = [path[i], path[i + 1]]
         if edge in edges:
-            counter = counter + 1
+            counter += 1
 
     return counter
 
@@ -135,27 +84,51 @@ def edge_coverage(edges, path):
 def edge_pair_coverage(edges, path):
     counter = 0
 
-    for i in range(len(path)-2):
-        left_edge = [path[i], path[i+1]]
-        right_edge = [path[i+1], path[i+2]]
+    for i in range(len(path) - 2):
+        left_edge = [path[i], path[i + 1]]
+        right_edge = [path[i + 1], path[i + 2]]
         if (left_edge in edges) and (right_edge in edges):
-            counter = counter + 1
+            counter += 1
 
     return counter
 
-def find_all_solutions(graph, edges, vertices, source, target, output_file):
 
+def print_path(path, edges):
+    output_file.write("Path: " + str(path) + '\n')
+    output_file.write("Length: " + str(len(path)) + '\n')
+    output_file.write("NC: " + str(node_coverage(path)) + '\n')
+    output_file.write("EC: " + str(edge_coverage(edges, path)) + '\n')
+    output_file.write("EPC: " + str(edge_pair_coverage(edges, path)) + '\n')
+    output_file.write('\n')
+
+
+def find_all_solutions(graph, edges, vertices, source, target, output_file):
     paths = visit_neighbours(graph, [], [source], source, target)
 
     output_file.write("\n\nAll Paths: \n")
     for path in paths:
-        output_file.write("Path: " + str(path) + '\n')
-        output_file.write("NC: " + str(node_coverage(path)) + '\n')
-        output_file.write("EC: " + str(edge_coverage(edges, path)) + '\n')
-        output_file.write("EPC: " + str(edge_pair_coverage(edges, path)) + '\n')
-        output_file.write('\n')
+        print_path(path, edges)
+
+    shortest_path_in_paths(paths)
+    output_file.write("\n\nShortest Path: \n")
+    print_path(shortest_path_in_paths(paths), edges)
 
 
+def shortest_path_in_paths(paths):
+
+    shortest_path = paths[0]
+    for path in paths[1:]:
+        if len(path) < len(shortest_path):
+            shortest_path = path
+
+    return shortest_path
+
+def get_basis_edges(edges, non_basic_edges):
+    basis_edges = []
+    for edge in edges:
+        if edge not in non_basic_edges:
+            basis_edges.append(edge)
+    return basis_edges
 
 
 if __name__ == '__main__':
@@ -180,12 +153,22 @@ if __name__ == '__main__':
         # find solutions and write solutions
         output_file = open(output_file, 'w')
 
-        # shortest path (dijkstra)
-        find_dijkstra_solution(graph, edges, vertices, source, target, output_file)
-
+        # all paths without contraints
         find_all_solutions(graph, edges, vertices, source, target, output_file)
 
-        # largest path (ford-fulkerson)
+        # basis edges
+        non_basic_edges = []
+        min_paths_from_node_to_target = []
+        for node in vertices[:-1]:  # exclude the terminal node to itself
+            min_paths_from_node_to_target.append( shortest_path_in_paths(visit_neighbours(graph, [], [node], node, target)))
+
+            first_edge = min_paths_from_node_to_target[node][0:2]
+            if first_edge not in non_basic_edges:
+                non_basic_edges.append(first_edge)
+
+        print(non_basic_edges)
+        basis_edges = get_basis_edges(edges, non_basic_edges)
+        print(basis_edges)
 
         output_file.close()
 
