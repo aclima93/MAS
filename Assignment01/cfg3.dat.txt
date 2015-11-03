@@ -1,4 +1,0 @@
-
-
-Dijkstra Shortest Path: [0, 1, 3, 27]
-Dijkstra Shortest Path Weight: 4

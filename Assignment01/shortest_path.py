@@ -51,11 +51,42 @@ def list_path_from_dict_path(dict_path, source, target):
     return list_path
 
 
-def visit_neighbours(graph, paths, path, node, target):
+def visit_neighbours_acyclic(graph, available_edges, paths, path, node, target):
+
     if graph[node] is not None:
         for neighbour in graph[node]:
+            edge = [node, neighbour]
+            if edge in available_edges:
+                # do
+                available_edges.remove(edge)
+                path.append(neighbour)
+                paths = visit_neighbours_acyclic(graph, available_edges, paths, path.copy(), neighbour, target)
+                # undo
+                path = path[:-1]
+                available_edges.append(edge)
+
+            else:
+                # do
+                path.append(neighbour)
+                paths = visit_neighbours_acyclic(graph, available_edges, paths, path.copy(), neighbour, target)
+                # undo
+                path = path[:-1]
+
+    else:
+        paths.append(path)
+
+    return paths
+
+def visit_neighbours(graph, paths, path, node, target):
+
+    if graph[node] is not None:
+        for neighbour in graph[node]:
+
+            # do
             path.append(neighbour)
             paths = visit_neighbours(graph, paths, path.copy(), neighbour, target)
+
+            # undo
             path = path[:-1]
     else:
         paths.append(path)
@@ -94,6 +125,7 @@ def edge_pair_coverage(edges, path):
 
 
 def print_path(path, edges):
+
     output_file.write("Path: " + str(path) + '\n')
     output_file.write("Length: " + str(len(path)) + '\n')
     output_file.write("NC: " + str(node_coverage(path)) + '\n')
@@ -103,15 +135,33 @@ def print_path(path, edges):
 
 
 def find_all_solutions(graph, edges, vertices, source, target, output_file):
-    paths = visit_neighbours(graph, [], [source], source, target)
+
+    # find basis edges
+    non_basic_edges = []
+    min_paths_from_node_to_target = []
+    for node in vertices[:-1]:  # exclude the terminal node to itself
+        min_paths_from_node_to_target.append( shortest_path_in_paths( visit_neighbours(graph, [], [node], node, target)))
+
+        first_edge = min_paths_from_node_to_target[node][0:2]
+        if first_edge not in non_basic_edges:
+            non_basic_edges.append(first_edge)
+
+    basis_edges = get_basis_edges(edges, non_basic_edges)
+
+    # generate all acyclic paths
+    paths = visit_neighbours_acyclic(graph, basis_edges, [], [source], source, target)
+
+    output_file.write("Vertices: " + str(vertices) + "\n")
+    output_file.write("Edges: " + str(edges) + "\n")
+    output_file.write("Non-Basic Edges: " + str(non_basic_edges) + "\n")
+    output_file.write("Basis Edges: " + str(basis_edges) + "\n")
 
     output_file.write("\n\nAll Paths: \n")
     for path in paths:
         print_path(path, edges)
 
-    shortest_path_in_paths(paths)
     output_file.write("\n\nShortest Path: \n")
-    print_path(shortest_path_in_paths(paths), edges)
+    print_path( shortest_path_in_paths( paths), edges)
 
 
 def shortest_path_in_paths(paths):
@@ -155,20 +205,6 @@ if __name__ == '__main__':
 
         # all paths without contraints
         find_all_solutions(graph, edges, vertices, source, target, output_file)
-
-        # basis edges
-        non_basic_edges = []
-        min_paths_from_node_to_target = []
-        for node in vertices[:-1]:  # exclude the terminal node to itself
-            min_paths_from_node_to_target.append( shortest_path_in_paths(visit_neighbours(graph, [], [node], node, target)))
-
-            first_edge = min_paths_from_node_to_target[node][0:2]
-            if first_edge not in non_basic_edges:
-                non_basic_edges.append(first_edge)
-
-        print(non_basic_edges)
-        basis_edges = get_basis_edges(edges, non_basic_edges)
-        print(basis_edges)
 
         output_file.close()
 

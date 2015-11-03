@@ -1,0 +1,29 @@
+"
+A determinação do caminho mais curto gera sempre nós sem ciclos. Não é preciso fazer mais nada. Vejam o ficheiro spp.mod no diretório de exemplos do glpk.
+
+Para gerarem caminhos com ciclos, podem começar por encontrar todos os ciclos usando uma formulação semelhante à do caminho mais curto, mas sem nó inicial e final, e obrigando a que o caminho tenha pelo menos um arco. Encontrado o primeiro ciclo, acrescentam uma restrição que o invalide, e correm de novo para encontrar outro, etc. (o mesmo se faz para os caminhos sem ciclos).
+
+Conhecidos todos os caminhos do nó de entrada para o de saída, e os ciclos existentes no grafo, podem construir todos os caminhos com ciclos combinando cada caminho com os ciclos com que o caminho tenha pelo menos um nó em comum, e assim sucessivamente, mas evitando que os basic edges sejam percorridos mais do que uma vez em cada caminho gerado (caso contrário, o número de caminhos possíveis não seria finito). Esta combinação de caminhos com ciclos para gerar novos caminhos pode ser feita facilmente usando uma linguagem de programação como o python, o que vos permitirá também calcular os dados de cobertura (de nós e arcos) necessários para os passos seguintes.
+
+Para descobrirem os non-basic edges, basta calcularem o caminho mais curto de cada nó do grafo para o nó final, usando a mesma formulação de caminhos mais curtos. O primeiro arco de cada caminho é non-basic, e os que no fim não são non-basic são basis edges.
+
+Notem que, para avançarem para a seleção de caminhos, basta partirem de qualquer conjunto de caminhos, mas que esteja incompleto. Isso deve permitir-vos dividir o trabalho entre os vários membros do grupo.
+"
+-- CMF
+
+
+Lista de itens a fazer:
+
+	[GLPK] - Pegar no spp.mod e criar um novo script que encontre ciclos num grafo
+		-- o caminho tem de ter pelo menos 1 uma aresta (ligar pelo menos dois vértices)
+		-- começamos a gerar o em cada vértice do grafo
+		-- terminamos quando tivermos percorrido todos os vértices ou quando chegármos a um vértice que já apareceu préviamente (esse vértice delimita o início e o fim do ciclo)
+		-- arranjar uma forma de invalidar um ciclo através de uma restrição
+
+	[GLPK] - gerar todos os caminhos do nó de entrada para o nó de saída
+		-- se um vértice aparecer uma segunda vez então descartamos esse caminho
+
+	[GLPK] - utilizar o spp.mod para calcular o caminho mais curto de cada nó para o nó terminal e extrair dai a informação sobre quais são as non-basic edges e a basis edges
+
+	[Python] - combinar os caminhos sem ciclos com todos os ciclos que tenham pelo menos 1 vértice em comum com o caminho
+		- calcular também a Node Coverage, Edge Coverage e Edge-pair Coverage de cada caminho
