@@ -27,29 +27,29 @@ Create an appropriate .dat file for GLPK spp.mod from the input .dat file
 data;
 
 param n := 13;
-param s := 1;
-param t := 13;
+param s := 0;
+param t := 12;
 
 param : E :   c :=
+0	1	1
+0	2	1
 1	2	1
 1	3	1
-2	3	1
-2	4	1
-3	13	1
+2	12	1
+3	4	1
+3	5	1
 4	5	1
-4	6	1
+4	8	1
+5	2	1
 5	6	1
-5	9	1
-6	3	1
-6	7	1
+5	7	1
 6	8	1
-7	9	1
+7	8	1
 8	9	1
 9	10	1
+9	11	1
 10	11	1
-10	12	1
-11	12	1
-12	13	1;
+11	12	1;
 
 end;
 """
@@ -61,9 +61,11 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 3:
+    if argc == 4:
+
         input_filename = sys.argv[1]
-        output_filename = sys.argv[2]
+        source = sys.argv[2]
+        output_filename = sys.argv[3]
 
         input_file = open(input_filename, 'r')
 
@@ -86,11 +88,8 @@ if __name__ == '__main__':
 
         # start and end nodes of our graph are defined by the corresponding minimum and maximum node numbers
         vertices.sort()
-        if vertices[0] == 0:
-            vertices = [x + 1 for x in vertices]
-            edges = [[x + 1, y + 1] for x, y in edges]
 
-        source = vertices[0]
+        # source = vertices[0] # source is now passed as an argument
         target = vertices[-1]
         num_vertices = len(vertices)
 
@@ -113,4 +112,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("dat_file_generator expects arguments: <input file> <output file>")
+        print("dat_file_generator expects arguments: <input file> <source node> <output file>")

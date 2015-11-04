@@ -6,20 +6,20 @@
    (i,j) in E, and two nodes s, t in V, the Shortest Path Problem (SPP)
    is to find a directed path from s to t whose length is minimal. */
 
-param n, integer, > 0;
+param n, integer, >= 0;
 /* number of nodes */
 
-set E, within {i in 1..n, j in 1..n};
+set E, within {i in 0..n, j in 0..n};
 /* set of edges */
 
 param c{(i,j) in E};
 /* c[i,j] is length of edge (i,j); note that edge lengths are allowed
    to be of any sign (positive, negative, or zero) */
 
-param s, in {1..n};
+param s, in {0..n};
 /* source node */
 
-param t, in {1..n};
+param t, in {0..n};
 /* target node */
 
 var x{(i,j) in E}, >= 0;
@@ -28,7 +28,7 @@ var x{(i,j) in E}, >= 0;
    note that variables x[i,j] are binary, however, there is no need to
    declare them so due to the totally unimodular constraint matrix */
 
-s.t. r{i in 1..n}: sum{(j,i) in E} x[j,i] + (if i = s then 1) =
+s.t. r{i in 0..n}: sum{(j,i) in E} x[j,i] + (if i = s then 1) =
                    sum{(i,j) in E} x[i,j] + (if i = t then 1);
 /* conservation conditions for unity flow from s to t; every feasible
    solution is a path from s to t */
