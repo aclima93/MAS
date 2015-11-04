@@ -61,10 +61,11 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 2:
-        filename = sys.argv[1]
+    if argc == 3:
+        input_filename = sys.argv[1]
+        output_filename = sys.argv[2]
 
-        input_file = open(str(filename) + str(".dat"), 'r')
+        input_file = open(input_filename, 'r')
 
         edges = []
         vertices = []
@@ -94,7 +95,7 @@ if __name__ == '__main__':
         num_vertices = len(vertices)
 
         # write to output file
-        output_file = open(str(filename) + str("_data.dat"), 'w')
+        output_file = open(output_filename, 'w')
 
         output_file.write("data;\n\n")
         output_file.write(str("param n := ") + str(num_vertices) + str(";\n"))
@@ -112,4 +113,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("dat_file_generator expects arguments: <input file name>")
+        print("dat_file_generator expects arguments: <input file> <output file>")

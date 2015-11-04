@@ -36,14 +36,32 @@ s.t. r{i in 1..n}: sum{(j,i) in E} x[j,i] + (if i = s then 1) =
 minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
 /* objective function is the path length to be minimized */
 
-solve;
+data;
 
-printf('=== START ===\n');
-/* source node */
-printf{s}'%d\n', s;
-/* x[i,j] = 1 means that edge (i,j) belong to shortest path;
-   x[i,j] = 0 means that edge (i,j) does not belong to shortest path; */
-printf{(i,j) in E}:'%d\t%d\t%d\n', i, j, x[i,j]; 
-printf('=== END ===\n\n');
+/* Optimal solution is 20 that corresponds to the following shortest
+   path: s = 1 -> 2 -> 4 -> 8 -> 6 = t */
+
+param n := 8;
+
+param s := 1;
+
+param t := 6;
+
+param : E :   c :=
+       1 2    1
+       1 4    8
+       1 7    6
+       2 4    2
+       3 2   14
+       3 4   10
+       3 5    6
+       3 6   19
+       4 5    8
+       4 8   13
+       5 8   12
+       6 5    7
+       7 4    5
+       8 6    4
+       8 7   10;
 
 end;
