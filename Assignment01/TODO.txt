@@ -27,3 +27,5 @@ Lista de itens a fazer:
 
 	[Python] - combinar os caminhos sem ciclos com todos os ciclos que tenham pelo menos 1 vértice em comum com o caminho
 		- calcular também a Node Coverage, Edge Coverage e Edge-pair Coverage de cada caminho
+
+	[GLPK] - fazer path selection com base na Node Coverage, Edge Coverage e Edge-pair Coverage (combinações destas todas)

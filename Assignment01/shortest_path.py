@@ -1,4 +1,7 @@
-__authors__ = 'aclima, ilpetronilho, pjaneiro'
+__author__ = 'aclima'
+"""
+o meu cantinho de testes
+"""
 
 import sys
 
