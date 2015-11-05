@@ -14,16 +14,16 @@ Notem que, para avançarem para a seleção de caminhos, basta partirem de qualq
 
 Lista de itens a fazer:
 
-	[GLPK] - Pegar no spp.mod e criar um novo script que encontre ciclos num grafo
+√	[GLPK] - Pegar no spp.mod e criar um novo script que encontre ciclos num grafo
 		-- o caminho tem de ter pelo menos 1 uma aresta (ligar pelo menos dois vértices)
-		-- começamos a gerar o em cada vértice do grafo
+		-- começamos a gerar o caminho em cada vértice do grafo
 		-- terminamos quando tivermos percorrido todos os vértices ou quando chegármos a um vértice que já apareceu préviamente (esse vértice delimita o início e o fim do ciclo)
 		-- arranjar uma forma de invalidar um ciclo através de uma restrição
 
 	[GLPK] - gerar todos os caminhos do nó de entrada para o nó de saída
 		-- se um vértice aparecer uma segunda vez então descartamos esse caminho
 
-	[GLPK] - utilizar o spp.mod para calcular o caminho mais curto de cada nó para o nó terminal e extrair dai a informação sobre quais são as non-basic edges e a basis edges
+√	[GLPK] - utilizar o spp.mod para calcular o caminho mais curto de cada nó para o nó terminal e extrair dai a informação sobre quais são as non-basic edges e a basis edges
 
 	[Python] - combinar os caminhos sem ciclos com todos os ciclos que tenham pelo menos 1 vértice em comum com o caminho
 		- calcular também a Node Coverage, Edge Coverage e Edge-pair Coverage de cada caminho

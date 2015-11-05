@@ -1,0 +1,7 @@
+GLPSOL: GLPK LP/MIP Solver, v4.52
+Parameter(s) specified in the command line:
+ -m spp.mod -d temp/cfg1_cycles_12_input.dat
+Reading model section from spp.mod...
+(unknown):0: unable to open spp.mod - No such file or directory
+Context:                                                             
+MathProg model processing error

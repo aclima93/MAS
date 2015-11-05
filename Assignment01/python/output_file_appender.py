@@ -78,24 +78,26 @@ if __name__ == '__main__':
         input_file = open(input_filename, 'r')
 
         data_lines = input_file.readlines()
-        start = data_lines.index("=== START ===\n")
-        end = data_lines.index("=== END ===\n")
-        data_lines = data_lines[start + 1:end]
+        if ("=== START ===\n" in data_lines) and ("=== END ===\n" in data_lines):
+            start = data_lines.index("=== START ===\n")
+            end = data_lines.index("=== END ===\n")
+            data_lines = data_lines[start + 1:end]
 
-        for line in data_lines[1:]:  # skip the source node
-            node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
-            if isUsed == "0":  # remove this line if the edge is not used in the shortest path
-                data_lines.remove(line)
+            for line in data_lines[1:]:  # skip the source node
+                node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
+                if isUsed == "0":  # remove this line if the edge is not used in the shortest path
+                    data_lines.remove(line)
 
-        input_file.close()
+            input_file.close()
 
-        # write to output file
-        output_file = open(output_filename, 'a')
+            # write to output file
+            output_file = open(output_filename, 'a')
 
-        for line in data_lines:
-            output_file.write(line)
+            for line in data_lines:
+                output_file.write(line)
 
-        output_file.close()
+            output_file.write("\n")
+            output_file.close()
 
     else:
         print("output_file_appender expects arguments: <input file> <output file>")

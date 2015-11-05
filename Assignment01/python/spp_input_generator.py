@@ -61,11 +61,18 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 4:
+    if argc >= 4:
 
-        input_filename = sys.argv[1]
-        source = sys.argv[2]
-        output_filename = sys.argv[3]
+        if argc == 5:
+            input_filename = sys.argv[1]
+            source = sys.argv[2]
+            target = sys.argv[3]
+            output_filename = sys.argv[4]
+        else:
+            input_filename = sys.argv[1]
+            source = sys.argv[2]
+            target = None
+            output_filename = sys.argv[3]
 
         input_file = open(input_filename, 'r')
 
@@ -90,7 +97,8 @@ if __name__ == '__main__':
         vertices.sort()
 
         # source = vertices[0] # source is now passed as an argument
-        target = vertices[-1]
+        if not target:
+            target = vertices[-1]
         num_vertices = len(vertices)
 
         # write to output file
@@ -107,9 +115,9 @@ if __name__ == '__main__':
             output_file.write(str("\n") + str(node1) + str("\t") + str(node2) + str("\t") + str("1"))
         output_file.write(";\n\n")
 
-        output_file.write("end;")
+        output_file.write("end;\n")
 
         output_file.close()
 
     else:
-        print("dat_file_generator expects arguments: <input file> <source node> <output file>")
+        print("dat_file_generator expects arguments: <input file> <source node> [<target node>] <output file>")
