@@ -1,4 +1,4 @@
-__author__ = 'aclima'
+__authors__ = 'aclima, ilpetronilho, pjaneiro'
 """
 Create an appropriate .dat file for GLPK spp.mod from the input .dat file
 

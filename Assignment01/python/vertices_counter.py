@@ -1,4 +1,4 @@
-__author__ = 'aclima'
+__authors__ = 'aclima, ilpetronilho, pjaneiro'
 """
 Count how many nodes there are in the graph
 

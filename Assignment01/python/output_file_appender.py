@@ -1,4 +1,4 @@
-__author__ = 'aclima'
+__authors__ = 'aclima, ilpetronilho, pjaneiro'
 """
 Strip the excess information from the GLPK spp.mod output and add it to the colective output file
 
@@ -58,8 +58,8 @@ Model has been successfully processed
 
 -----------OUTPUT------------
 1
-1	3	1
-3	13	1
+1	3
+3	13
 """
 
 import sys
@@ -86,7 +86,7 @@ if __name__ == '__main__':
             for line in data_lines[1:]:  # skip the source node
                 node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
                 if isUsed == "0":  # remove this line if the edge is not used in the shortest path
-                    data_lines.remove(line)
+                    data_lines.remove(str(node1) + " " + str(node2))
 
             input_file.close()
 
