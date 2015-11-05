@@ -61,18 +61,25 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc >= 4:
+    if argc >= 2:
 
         if argc == 5:
             input_filename = sys.argv[1]
             source = sys.argv[2]
             target = sys.argv[3]
             output_filename = sys.argv[4]
-        else:
+
+        elif argc == 4:
             input_filename = sys.argv[1]
             source = sys.argv[2]
             target = None
             output_filename = sys.argv[3]
+
+        else:
+            input_filename = sys.argv[1]
+            source = None
+            target = None
+            output_filename = sys.argv[2]
 
         input_file = open(input_filename, 'r')
 
@@ -96,9 +103,12 @@ if __name__ == '__main__':
         # start and end nodes of our graph are defined by the corresponding minimum and maximum node numbers
         vertices.sort()
 
-        # source = vertices[0] # source is now passed as an argument
+        if not source:
+            source = vertices[0]
+
         if not target:
             target = vertices[-1]
+
         num_vertices = len(vertices)
 
         # write to output file
@@ -120,4 +130,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("dat_file_generator expects arguments: <input file> <source node> [<target node>] <output file>")
+        print("dat_file_generator expects arguments: <input file> [<source node>] [<target node>] <output file>")
