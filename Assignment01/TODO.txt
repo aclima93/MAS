@@ -23,7 +23,7 @@ Lista de itens a fazer:
 	[GLPK] - gerar todos os caminhos do nó de entrada para o nó de saída
 		-- se um vértice aparecer uma segunda vez então descartamos esse caminho
 
-√	[GLPK] - utilizar o spp.mod para calcular o caminho mais curto de cada nó para o nó terminal e extrair dai a informação sobre quais são as non-basic edges e a basis edges
+√	[GLPK] - utilizar o spp.mod para calcular o caminho mais curto de cada nó para o nó terminal e extrair dai a informação sobre quais são as non-basic edges e as basis edges
 
 	[Python] - combinar os caminhos sem ciclos com todos os ciclos que tenham pelo menos 1 vértice em comum com o caminho
 		- calcular também a Node Coverage, Edge Coverage e Edge-pair Coverage de cada caminho

@@ -32,14 +32,14 @@ def edge_pair_coverage(edges, path):
 
     return counter
 
-def print_path(output_file, path):#, edges):
+def print_path_info(file, path, edges):
 
-    output_file.write("Path: " + str(path) + '\n')
-    output_file.write("Length: " + str(len(path)) + '\n')
-    # output_file.write("NC: " + str(node_coverage(path)) + '\n')
-    # output_file.write("EC: " + str(edge_coverage(edges, path)) + '\n')
-    # output_file.write("EPC: " + str(edge_pair_coverage(edges, path)) + '\n')
-    output_file.write('\n')
+    file.write("Path: " + str(path) + '\n')
+    file.write("Length: " + str(len(path)) + '\n')
+    file.write("NC: " + str(node_coverage(path)) + '\n')
+    file.write("EC: " + str(edge_coverage(edges, path)) + '\n')
+    file.write("EPC: " + str(edge_pair_coverage(edges, path)) + '\n')
+    file.write('\n')
 
 
 # parse edges from file
@@ -153,9 +153,13 @@ def combine_paths_with_cycles(paths, cycles):
         path.append(cycles_k)  # add the starting node of the cycle for easier fitting afterwards
         cycles_lists[cycles_k] = path
 
+    '''
     print(paths_lists)
     print(cycles_lists)
+    '''
 
+    # #
+    # Paths With Cycles
     paths_with_cycles = []
     for paths_lists_v in paths_lists.values():
         for cycles_lists_k in cycles_lists.keys():
@@ -172,29 +176,54 @@ def combine_paths_with_cycles(paths, cycles):
                 if path not in paths_with_cycles:
                     paths_with_cycles.append(path)
 
+    # print(paths_with_cycles)
+
     return paths_with_cycles
+
+
+def get_path_edges(path):
+    edges = []
+    for i in range(len(path) - 1):
+        edge = path[i:i + 2]
+        if edge not in edges:
+            edges.append(edge)
+
+    # print(edges)
+
+    return edges
 
 
 if __name__ == '__main__':
 
-    basics_paths_file = open("paths.txt", 'r')
-    paths_file = open("paths.txt", 'r')
-    cycles_file = open("cycles.txt", 'r')
-    paths_with_cycles_file = open("paths_with_cycles.txt", 'w')
+    argc = len(sys.argv)  # program name also counts
 
-    basics_paths, basics_paths_edges = parse_file(basics_paths_file)
-    paths, paths_edges = parse_file(paths_file)
-    cycles, cycles_edges = parse_file(cycles_file)
+    # input file
+    if argc == 5:
 
-    paths_file.close()
-    cycles_file.close()
+        basic_paths_filename = sys.argv[1]
+        paths_filename = sys.argv[2]
+        cycles_filename = sys.argv[3]
+        output_filename = sys.argv[4]
 
-    paths_with_cycles = combine_paths_with_cycles(paths, cycles)
-    print(paths_with_cycles)
+        basic_paths_file = open(basic_paths_filename, 'r')
+        paths_file = open(paths_filename, 'r')
+        cycles_file = open(cycles_filename, 'r')
 
-    '''
-    for path, edges in paths_with_cycles:
-        print_path(paths_with_cycles_file, path, edges)
-    '''
+        basics_paths, basics_paths_edges = parse_file(basic_paths_file)
+        paths, paths_edges = parse_file(paths_file)
+        cycles, cycles_edges = parse_file(cycles_file)
 
-    paths_with_cycles_file.close()
+        basic_paths_file.close()
+        paths_file.close()
+        cycles_file.close()
+
+        output_file = open(output_filename, 'w')
+
+        paths_with_cycles = combine_paths_with_cycles(paths, cycles)
+        for path in paths_with_cycles:
+            print_path_info(output_file, path, get_path_edges(path))
+
+        output_file.close()
+
+    else:
+        print("path_generation expects arguments: <basic paths file file> <paths file> <cycles file> <output file>")
