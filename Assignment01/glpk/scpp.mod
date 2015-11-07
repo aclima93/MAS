@@ -16,6 +16,9 @@ param c{(i,j) in E};
 /* c[i,j] is length of edge (i,j); note that edge lengths are allowed
    to be of any sign (positive, negative, or zero) */
 
+set FE, within {i in 0..n, j in 0..n};
+/* set of forbidden edges */
+
 var x{(i,j) in E}, binary;
 /* x[i,j] = 1 means that edge (i,j) belong to shortest cycle path;
    x[i,j] = 0 means that edge (i,j) does not belong to shortest cycle path;
@@ -28,14 +31,15 @@ s.t. r1{i in 0..n}: sum{(j,i) in E} x[j,i] =
 s.t. r2: sum{(i,j) in E} x[i,j] >= 1;
 /* at least one edge must be chosen */
 
+s.t. r3: sum{(i,j) in FE} x[i,j] <= 0;
+/* no forbidden edge can be chosen */
+
 minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
 /* objective function is the path length to be maximized */
 
 solve;
 
 printf('=== START ===\n');
-/* source node */
-printf{s}'%d\n', s;
 /* x[i,j] = 1 means that edge (i,j) belong to shortest cycle path;
    x[i,j] = 0 means that edge (i,j) does not belong to shortest cycle path; */
 printf{(i,j) in E}:'%d\t%d\t%d\n', i, j, x[i,j]; 

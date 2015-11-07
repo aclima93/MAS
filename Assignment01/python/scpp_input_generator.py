@@ -1,6 +1,6 @@
 __authors__ = 'aclima, ilpetronilho, pjaneiro'
 """
-Create an appropriate .dat file for GLPK spp.mod from the input .dat file
+Create an appropriate .dat file for GLPK scpp.mod from the input .dat file
 
 ----------INPUT-----------
  0  1
@@ -61,25 +61,11 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc >= 3:
+    if argc == 4:
 
-        if argc == 5:
-            input_filename = sys.argv[1]
-            source = sys.argv[2]
-            target = sys.argv[3]
-            output_filename = sys.argv[4]
-
-        elif argc == 4:
-            input_filename = sys.argv[1]
-            source = sys.argv[2]
-            target = None
-            output_filename = sys.argv[3]
-
-        else:
-            input_filename = sys.argv[1]
-            source = None
-            target = None
-            output_filename = sys.argv[2]
+        input_filename = sys.argv[1]
+        previous_solutions_filename = sys.argv[2]
+        output_filename = sys.argv[3]
 
         input_file = open(input_filename, 'r')
 
@@ -102,32 +88,31 @@ if __name__ == '__main__':
 
         # start and end nodes of our graph are defined by the corresponding minimum and maximum node numbers
         vertices.sort()
-
-        if not source:
-            source = vertices[0]
-
-        if not target:
-            target = vertices[-1]
-
         num_vertices = len(vertices)
 
         # write to output file
         output_file = open(output_filename, 'w')
 
         output_file.write("data;\n\n")
+
         output_file.write(str("param n := ") + str(num_vertices) + str(";\n"))
-        output_file.write(str("param s := ") + str(source) + str(";\n"))
-        output_file.write(str("param t := ") + str(target) + str(";\n"))
+
+        # write previous found solutions as forbidden edges for the this iteration
+        output_file.write("\nset FE :=")
+        previous_solutions_file = open(previous_solutions_filename, 'r')
+        for line in previous_solutions_file.readlines():
+            output_file.write(line)
+        previous_solutions_file.close()
+        output_file.write(";\n")
 
         output_file.write("\nparam : E :   c :=")
         for node1, node2 in edges:
             # unweighed == same weight for all
             output_file.write(str("\n") + str(node1) + str("\t") + str(node2) + str("\t") + str("1"))
-        output_file.write(";\n\n")
 
-        output_file.write("end;\n")
+        output_file.write(";\n\nend;\n")
 
         output_file.close()
 
     else:
-        print("dat_file_generator expects arguments: <input file> [<source node>] [<target node>] <output file>")
+        print("dat_file_generator expects arguments: <input file> <previous solutions file> <output file> ")

@@ -86,7 +86,7 @@ if __name__ == '__main__':
             for line in data_lines[1:]:  # skip the source node
                 node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
                 if isUsed == "0":  # remove this line if the edge is not used in the shortest path
-                    data_lines.remove(str(node1) + " " + str(node2))
+                    data_lines.remove(line)
 
             input_file.close()
 
@@ -94,10 +94,11 @@ if __name__ == '__main__':
             output_file = open(output_filename, 'a')
 
             for line in data_lines:
-                output_file.write(line)
+                node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
+                output_file.write(node1 + " " + node2 + "\n")
 
             output_file.write("\n")
             output_file.close()
 
     else:
-        print("output_file_appender expects arguments: <input file> <output file>")
+        print("spp_output_file_appender expects arguments: <input file> <output file>")
