@@ -16,7 +16,7 @@ echo "Running for "$filename"..."
 
 ##
 ## Shortest Cycles
-echo "Finding Cycles"
+echo "Finding Shortest Cycles"
 
 while true
 do

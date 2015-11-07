@@ -1,0 +1,48 @@
+Path: [0, 1, 4]
+Length: 3
+NC: 3
+EC: 2
+EPC: 1
+
+Path: [0, 1, 2, 3, 1, 4]
+Length: 6
+NC: 5
+EC: 5
+EPC: 4
+
+Path: [1, 2, 3, 1, 4]
+Length: 5
+NC: 4
+EC: 4
+EPC: 3
+
+Path: [1, 4]
+Length: 2
+NC: 2
+EC: 1
+EPC: 0
+
+Path: [2, 3, 1, 2, 3, 1, 4]
+Length: 7
+NC: 4
+EC: 6
+EPC: 5
+
+Path: [2, 3, 1, 4]
+Length: 4
+NC: 4
+EC: 3
+EPC: 2
+
+Path: [3, 1, 2, 3, 1, 4]
+Length: 6
+NC: 4
+EC: 5
+EPC: 4
+
+Path: [3, 1, 4]
+Length: 3
+NC: 3
+EC: 2
+EPC: 1
+
