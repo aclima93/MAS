@@ -24,11 +24,11 @@ do
 	# create an appropriate .dat file for our .mod file from the given .dat
 	python python/scpp_input_generator.py "inputs/"$filename".dat" "outputs/"$filename"_scpp_output.dat" "temp/"$filename"_scpp_input.dat"
 
-	# get the shortest cycle from source i to target i
+	# get the shortest cycle
 	glpsol -m glpk/scpp.mod -d "temp/"$filename"_scpp_input.dat" > temp/output.tmp
 
 	# if no more solutions to be found
-	if [ $(python python/no_solution_found.py temp/output.tmp) ]; then
+	if [ $(python python/no_solution_found.py temp/output.tmp) = "True" ]; then
 		break
     fi 
 

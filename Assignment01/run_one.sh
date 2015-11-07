@@ -6,7 +6,7 @@ filename=$1
 # delete the previous results
 rm -r temp/*
 rm -r "outputs/"$filename"_spp_output.dat"
-rm -r "outputs/"$filename"_cycles_output.dat"
+rm -r "outputs/"$filename"_scpp_output.dat"
 
 # we are gonna need these emptied out
 touch "outputs/"$filename"_spp_output.dat"
@@ -47,7 +47,7 @@ do
 	glpsol -m glpk/scpp.mod -d "temp/"$filename"_scpp_input.dat" > temp/output.tmp
 
 	# if no more solutions to be found
-	if [ $(python python/no_solution_found.py temp/output.tmp) ]; then
+	if [ $(python python/no_solution_found.py temp/output.tmp) = "True" ]; then
 		break
     fi 
 

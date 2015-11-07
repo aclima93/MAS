@@ -98,12 +98,17 @@ if __name__ == '__main__':
         output_file.write(str("param n := ") + str(num_vertices) + str(";\n"))
 
         # write previous found solutions as forbidden edges for the this iteration
-        output_file.write("\nset FE :=")
         previous_solutions_file = open(previous_solutions_filename, 'r')
-        for line in previous_solutions_file.readlines():
+        lines = previous_solutions_file.readlines()
+
+        output_file.write(str("param fn := ") + str(len(lines)) + str(";\n"))
+
+        output_file.write("\nset FE :=\n")
+        for line in lines:
             output_file.write(line)
-        previous_solutions_file.close()
         output_file.write(";\n")
+
+        previous_solutions_file.close()
 
         output_file.write("\nparam : E :   c :=")
         for node1, node2 in edges:
