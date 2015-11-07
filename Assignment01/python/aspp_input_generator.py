@@ -1,6 +1,6 @@
 __authors__ = 'aclima, ilpetronilho, pjaneiro'
 """
-Create an appropriate .dat file for GLPK scpp.mod from the input .dat file
+Create an appropriate .dat file for GLPK aspp.mod from the input .dat file
 
 ----------INPUT-----------
  0  1
@@ -88,6 +88,8 @@ if __name__ == '__main__':
 
         # start and end nodes of our graph are defined by the corresponding minimum and maximum node numbers
         vertices.sort()
+        source = vertices[0]
+        target = vertices[-1]
         num_vertices = len(vertices)
 
         # write to output file
@@ -96,6 +98,8 @@ if __name__ == '__main__':
         output_file.write("data;\n\n")
 
         output_file.write(str("param n := ") + str(num_vertices) + str(";\n"))
+        output_file.write(str("param s := ") + str(source) + str(";\n"))
+        output_file.write(str("param t := ") + str(target) + str(";\n"))
 
         # write previous found solutions as forbidden edges for the this iteration
         previous_solutions_file = open(previous_solutions_filename, 'r')
@@ -120,4 +124,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("scpp_input_generator expects arguments: <input file> <previous solutions file> <output file> ")
+        print("aspp_input_generator expects arguments: <input file> <previous solutions file> <output file> ")

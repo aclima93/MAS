@@ -76,25 +76,21 @@ if __name__ == '__main__':
 
         # read input file and filter useful information
         input_file = open(input_filename, 'r')
-
         data_lines = input_file.readlines()
+        input_file.close()
+
         if ("=== START ===\n" in data_lines) and ("=== END ===\n" in data_lines):
+
             start = data_lines.index("=== START ===\n")
             end = data_lines.index("=== END ===\n")
-            data_lines = data_lines[start + 1:end]
+            data_lines = data_lines[start + 1:end]  # skip start line
+            data_lines = data_lines[1:]  # skip the source node
 
-            for line in data_lines[1:]:  # skip the source node
-                node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
-                if isUsed == "0":  # remove this line if the edge is not used in the shortest path
-                    data_lines.remove(line)
-
-            input_file.close()
-
-            # write to output file
             output_file = open(output_filename, 'a')
-
-            for line in data_lines:
-                output_file.write(line)
+            for line in data_lines:  # skip the source node
+                node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
+                if isUsed is not "0":  # write if the edge is used in the shortest path
+                    output_file.write(node1 + " " + node2 + "\n")
 
             output_file.write("\n")
             output_file.close()

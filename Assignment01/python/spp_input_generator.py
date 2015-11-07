@@ -130,4 +130,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("dat_file_generator expects arguments: <input file> [<source node>] [<target node>] <output file>")
+        print("spp_input_generator expects arguments: <input file> [<source node>] [<target node>] <output file>")

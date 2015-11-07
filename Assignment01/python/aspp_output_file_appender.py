@@ -83,6 +83,7 @@ if __name__ == '__main__':
             start = data_lines.index("=== START ===\n")
             end = data_lines.index("=== END ===\n")
             data_lines = data_lines[start + 1:end]  # skip start line
+            data_lines = data_lines[1:]  # skip the source node
 
             output_file = open(output_filename, 'a')
             for line in data_lines:  # skip the source node
@@ -94,4 +95,4 @@ if __name__ == '__main__':
             output_file.close()
 
     else:
-        print("scpp_output_file_appender expects arguments: <input file> <output file>")
+        print("aspp_output_file_appender expects arguments: <input file> <output file>")
