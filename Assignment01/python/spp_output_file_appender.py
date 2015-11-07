@@ -94,8 +94,7 @@ if __name__ == '__main__':
             output_file = open(output_filename, 'a')
 
             for line in data_lines:
-                node1, node2, isUsed = line.rstrip().lstrip().split()  # remove right and left whitespace then split
-                output_file.write(node1 + " " + node2 + "\n")
+                output_file.write(line)
 
             output_file.write("\n")
             output_file.close()

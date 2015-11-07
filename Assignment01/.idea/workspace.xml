@@ -30,11 +30,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="scpp_input_generator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scpp_input_generator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/python/scpp_input_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18346775">
+            <state vertical-scroll-proportion="0.0">
               <caret line="95" column="38" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spp_output_file_appender.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/python/spp_output_file_appender.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.63709676">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -82,13 +92,13 @@
         <option value="$PROJECT_DIR$/cantinho do António/paths.txt" />
         <option value="$PROJECT_DIR$/cantinho do António/paths_with_cycles.txt" />
         <option value="$PROJECT_DIR$/cantinho do António/path_generation.py" />
-        <option value="$PROJECT_DIR$/python/spp_input_generator.py" />
         <option value="$PROJECT_DIR$/python/output_file_appender.py" />
         <option value="$PROJECT_DIR$/python/path_generation.py" />
         <option value="$PROJECT_DIR$/python/no_solution_found.py" />
         <option value="$PROJECT_DIR$/python/scpp_output_file_appender.py" />
-        <option value="$PROJECT_DIR$/python/spp_output_file_appender.py" />
         <option value="$PROJECT_DIR$/python/scpp_input_generator.py" />
+        <option value="$PROJECT_DIR$/python/spp_input_generator.py" />
+        <option value="$PROJECT_DIR$/python/spp_output_file_appender.py" />
       </list>
     </option>
   </component>
@@ -377,9 +387,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1439" height="873" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26727787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26727787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.50282085" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -464,14 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/python/spp_input_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9800797">
-          <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/python/vertices_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8007968">
@@ -498,14 +500,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/python/spp_output_file_appender.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6673387">
-          <caret line="97" column="61" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/python/scpp_output_file_appender.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.6633065">
@@ -514,10 +508,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/python/spp_input_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24193548">
+          <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/python/scpp_input_generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18346775">
+        <state vertical-scroll-proportion="0.0">
           <caret line="95" column="38" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python/spp_output_file_appender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63709676">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="39" />
           <folding />
         </state>
       </provider>
