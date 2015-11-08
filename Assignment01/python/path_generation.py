@@ -47,26 +47,32 @@ def parse_file(file):
 
     paths = {}
     edges = {}
-    aux = None
+    source = None
+    new_solution = True
     for line in file.readlines():
 
         # strip troublesome whitespace
         line = line.rstrip().lstrip()
 
-        # vertex line
-        if re.fullmatch("(\d)+", line):
-            aux = int(re.fullmatch("(\d)+", line).group(0))
+        # empty line
+        if re.match("\n", line):
+            new_solution = True
 
         # edge line
-        elif re.fullmatch("(\d)+ (\d)+", line):
+        elif re.match("(\d)+ (\d)+", line):
 
-            node1, node2 = re.fullmatch("(\d)+ (\d)+", line).group(0).split()
+            node1, node2 = re.match("(\d)+ (\d)+", line).group(0).split()
+
+            if new_solution:
+                source = int(node1)
+                new_solution = False
+
             edge = [int(node1), int(node2)]
 
-            if edges.get(aux):
-                edges[aux].append(edge)
+            if edges.get(source):
+                edges[source].append(edge)
             else:
-                edges[aux] = [edge]
+                edges[source] = [edge]
 
     # remove empty paths and order the rest
     for source_node, path_edges in edges.items():
@@ -201,8 +207,8 @@ if __name__ == '__main__':
     if argc == 5:
 
         basic_paths_filename = sys.argv[1]
-        paths_filename = sys.argv[2]
-        cycles_filename = sys.argv[3]
+        cycles_filename = sys.argv[2]
+        paths_filename = sys.argv[3]
         output_filename = sys.argv[4]
 
         basic_paths_file = open(basic_paths_filename, 'r')
@@ -226,4 +232,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("path_generation expects arguments: <basic paths file file> <paths file> <cycles file> <output file>")
+        print("path_generation expects arguments: <basic paths file> <cycles file> <paths file> <output file>")
