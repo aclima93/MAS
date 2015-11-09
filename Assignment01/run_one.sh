@@ -3,6 +3,15 @@
 # common filename to be used
 filename=$1
 
+# delete the previous results
+for dir_path in "outputs/" "temp/"
+do
+	cd $dir_path
+	find . -type f -name $filename\* | xargs rm -r
+	cd ..
+
+done	
+
 # we are gonna need these emptied out for the loops
 touch "outputs/"$filename"_spp_output.dat"
 touch "outputs/"$filename"_scpp_output.dat"
@@ -33,6 +42,8 @@ done
 ## Shortest Cycles
 echo "Finding Shortest Cycles..."
 
+rm -r temp/last_solution.tmp
+touch temp/last_solution.tmp
 while true
 do
 
@@ -43,8 +54,10 @@ do
 	glpsol -m glpk/scpp.mod -d "temp/"$filename"_scpp_input.dat" > temp/output.tmp
 
 	# if no more solutions to be found
-	if [ $(python python/no_solution_found.py temp/output.tmp) = "True" ]; then
+	if [ $(python python/continue_searching.py temp/output.tmp temp/last_solution.tmp) = "False" ]; then
 		break
+	else 
+	    cat temp/output.tmp > temp/last_solution.tmp
     fi 
 
 	# add the obtained shortest cycle to the list of shortest cycles
@@ -56,6 +69,8 @@ done
 ## All Shortest Paths
 echo "Finding All Shortest Paths..."
 
+rm -r temp/last_solution.tmp
+touch temp/last_solution.tmp
 while true
 do
 
@@ -66,8 +81,10 @@ do
 	glpsol -m glpk/aspp.mod -d "temp/"$filename"_aspp_input.dat" > temp/output.tmp
 
 	# if no more solutions to be found
-	if [ $(python python/no_solution_found.py temp/output.tmp) = "True" ]; then
+	if [ $(python python/continue_searching.py temp/output.tmp temp/last_solution.tmp) = "False" ]; then
 		break
+	else 
+	    cat temp/output.tmp > temp/last_solution.tmp
     fi 
 
 	# add the obtained shortest path to the list of shortest paths

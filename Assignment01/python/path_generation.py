@@ -36,16 +36,17 @@ def print_header(file, max_coverage):
     file.write("data;\n")
     file.write("\n")
     file.write("/* Max. Coverage i.e. Coverage of the full graph */\n")
-    file.write("param mc := " + str(max_coverage) + ";\n")
+    file.write("param maxC := " + str(max_coverage) + ";\n")
     file.write("\n")
     file.write("/* Max. Coverage Percent. */\n")
-    file.write("param mcp := 100;\n")
+    file.write("param maxCP := " + str(100) + ";\n")
+    file.write("param minCP := " + str(25) + ";\n")
     file.write("\n")
     file.write("/* Items: index, weight, coverage */\n")
     file.write("set I :=\n")
 
 def print_footer(file):
-    file.write(";\n\n end;")
+    file.write(";\n\n end;\n")
 
 def print_path_info(file, path_index, path, weight, coverage):
 

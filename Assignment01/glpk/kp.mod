@@ -3,10 +3,11 @@
 /* Written in GNU MathProg inspired on https://en.wikibooks.org/wiki/GLPK/Knapsack_Problem */
 
 /* Max. Coverage */
-param mc;
+param maxC;
 
-/* Max. Coverage Percent. */
-param mcp;
+/* Max., Min Coverage Percent. */
+param maxCP;
+param minCP;
 
 /* Items: index, weight, coverage */
 set I, dimen 3;
@@ -17,11 +18,16 @@ set J := setof{(i, w, c) in I} i;
 /* Assignment */
 var a{J}, binary;
 
-maximize obj : sum{(i, w, c) in I} w * a[i];
 
-/* Covegare between 0 and Max. Coverage Percent. */
-s.t. minCoverage : sum{(i, w, c) in I} c * a[i] >= 0;
-s.t. maxCoverage : sum{(i, w, c) in I} ((c * a[i]) * 100) / mc <= mcp;
+maximize obj : sum{(i, w, c) in I} a[i] * w;
+
+/* At least one path must be chosen */
+s.t. pathSelected: sum{(i, w, c) in I} a[i] >= 1;
+
+/* Covegare between Min. and Max. Coverage Percent. */
+/*s.t. minCoverage : sum{(i, w, c) in I} c * a[i] >= 0;*/
+s.t. minCoverage : sum{(i, w, c) in I} ((c * a[i]) * 100) / maxC >= minCP;
+s.t. maxCoverage : sum{(i, w, c) in I} ((c * a[i]) * 100) / maxC <= maxCP;
 
 solve;
 
