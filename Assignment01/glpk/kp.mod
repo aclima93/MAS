@@ -29,23 +29,4 @@ printf "\n";
 printf {(i, w, c) in I: a[i] == 1} " %i", i;
 printf "\n";
 
-data;
-
-/* Max. Coverage i.e. Coverage of the full graph */
-param mc := 100;
-
-/* Max. Coverage Percent. */
-param mcp := 92;
-
-/* Items: index, weight, coverage */
-set I :=
-  1 10 10
-  2 10 10
-  3 15 15
-  4 20 20
-  5 20 20
-  6 24 24
-  7 24 24
-  8 50 50;
-
 end;

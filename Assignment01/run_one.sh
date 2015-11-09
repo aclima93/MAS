@@ -81,5 +81,28 @@ do
 
 done
 
+##
+## Combine Shortest Paths with Cycles
+echo "Combining Paths and Cycles..."
+
+# combine patsh and cycles and create files for knapsack coverage problem
+python python/path_generation.py "inputs/"$filename".dat" "outputs/"$filename"_spp_output.dat" "outputs/"$filename"_scpp_output.dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_node_coverage_input.dat" "temp/"$filename"_edge_coverage_input.dat" "temp/"$filename"_edge_pair_coverage_input.dat"		
+
+##
+## Select paths with cycles for best coverage
+echo "Selecting Paths..."
+
+# knapsack for node coverage
+glpsol -m glpk/kp.mod -d "temp/"$filename"_node_coverage_input.dat" > "outputs/"$filename"_node_coverage.dat"
+
+# knapsack for edge coverage
+glpsol -m glpk/kp.mod -d "temp/"$filename"_edge_coverage_input.dat" > "outputs/"$filename"_edge_coverage.dat"
+
+# knapsack for edge-pair coverage
+glpsol -m glpk/kp.mod -d "temp/"$filename"_edge_pair_coverage_input.dat" > "outputs/"$filename"_edge_pair_coverage.dat"
+
+##
+## Done
+
 echo "Done."
 echo ""

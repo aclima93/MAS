@@ -44,6 +44,8 @@ def print_header(file, max_coverage):
     file.write("/* Items: index, weight, coverage */\n")
     file.write("set I :=\n")
 
+def print_footer(file):
+    file.write(";\n\n end;")
 
 def print_path_info(file, path_index, path, weight, coverage):
 
@@ -186,6 +188,34 @@ def get_path_edges(path):
     return edges
 
 
+def get_nodes_from_edges(edges):
+    nodes = []
+    for edge in edges:
+        node1, node2 = edge.lstrip().rstrip().split()
+        nodes.append(node1)
+        nodes.append(node2)
+
+    nodes = list(set(nodes))
+    nodes.sort()
+    return nodes
+
+
+def get_edge_pairs_from_edges(edges):
+    edge_pairs = []
+
+    for edge1 in edges:
+        for edge2 in edges:
+            if not(edge1 == edge2):
+                node11, node12 = edge1.lstrip().rstrip().split()
+                node21, node22 = edge2.lstrip().rstrip().split()
+
+                if (node12 == node21) and ([edge1, edge2] not in edge_pairs):
+                    edge_pairs.append([edge1, edge2])
+                if (node11 == node22) and ([edge2, edge1] not in edge_pairs):
+                    edge_pairs.append([edge2, edge1])
+
+    return edge_pairs
+
 if __name__ == '__main__':
 
     argc = len(sys.argv)  # program name also counts
@@ -207,7 +237,7 @@ if __name__ == '__main__':
         cycles_file = open(cycles_filename, 'r')
 
         # load the computed data from the output files
-        graph_paths, graph_edges = parse_file(basic_paths_file)
+        graph_edges = graph_file.readlines()
         basics_paths, basics_paths_edges = parse_file(basic_paths_file)
         paths, paths_edges = parse_file(paths_file)
         cycles, cycles_edges = parse_file(cycles_file)
@@ -222,11 +252,9 @@ if __name__ == '__main__':
         edge_pair_coverage_file = open(edge_pair_coverage_filename, 'w')
 
         # write beginning of each .dat file
-        graph_path = graph_paths[0]
-        graph_edges = get_path_edges(graph_path)
-        print_header(node_coverage_file, path_node_coverage(graph_path))
-        print_header(edge_coverage_file, path_edge_coverage(graph_edges, graph_path))
-        print_header(edge_pair_coverage_file, path_edge_pair_coverage(graph_edges, graph_path))
+        print_header(node_coverage_file, len(get_nodes_from_edges(graph_edges)))
+        print_header(edge_coverage_file, len(graph_edges))
+        print_header(edge_pair_coverage_file, len(get_edge_pairs_from_edges(graph_edges)))
 
         # combine paths and graphs
         paths_with_cycles = combine_paths_with_cycles(paths, cycles)
@@ -242,9 +270,9 @@ if __name__ == '__main__':
             path_index += 1
 
         # write ending of each .dat file
-        node_coverage_file.write(";\n\n end;")
-        edge_coverage_file.write(";\n\n end;")
-        edge_pair_coverage_file.write(";\n\n end;")
+        print_footer(node_coverage_file)
+        print_footer(edge_coverage_file)
+        print_footer(edge_pair_coverage_file)
 
         node_coverage_file.close()
         edge_coverage_file.close()
