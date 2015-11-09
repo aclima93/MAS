@@ -105,8 +105,6 @@ if __name__ == '__main__':
         previous_solutions_file = open(previous_solutions_filename, 'r')
         lines = previous_solutions_file.readlines()
 
-        output_file.write(str("param fn := ") + str(len(lines)) + str(";\n"))
-
         output_file.write("\nset FE :=\n")
         for line in lines:
             output_file.write(line)

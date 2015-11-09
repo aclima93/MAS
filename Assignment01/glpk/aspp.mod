@@ -23,9 +23,6 @@ param s, in {0..n};
 param t, in {0..n};
 /* target node */
 
-param fn, integer, >= 0;
-/* number of forbidden edges */
-
 set FE, within {i in 0..n, j in 0..n};
 /* set of forbidden edges */
 
@@ -40,8 +37,8 @@ s.t. r1{i in 0..n}: sum{(j,i) in E} x[j,i] + (if i = s then 1) =
 /* conservation conditions for unity flow from s to t; every feasible
    solution is a path from s to t */
 
-s.t. r2: sum{(i,j) in FE} x[i,j] = 0; /*<= fn;*/
-/* no forbidden edge can be chosen */
+s.t. r2: sum{(i,j) in E}  x[i,j] >= sum{(i,j) in FE} x[i,j];
+/* not all forbidden edges can be chosen */
 
 minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
 /* objective function is the path length to be minimized */

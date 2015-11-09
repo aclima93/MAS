@@ -16,9 +16,6 @@ param c{(i,j) in E};
 /* c[i,j] is length of edge (i,j); note that edge lengths are allowed
    to be of any sign (positive, negative, or zero) */
 
-param fn, integer, >= 0;
-/* number of forbidden edges */
-
 set FE, within {i in 0..n, j in 0..n};
 /* set of forbidden edges */
 
@@ -31,14 +28,8 @@ var x{(i,j) in E}, binary;
 s.t. r1{i in 0..n}: sum{(j,i) in E} x[j,i] =
                    sum{(i,j) in E} x[i,j];
 
-s.t. r2: sum{(i,j) in E} x[i,j] >= 1;
-/* at least one edge must be chosen */
-
-s.t. r3: sum{(i,j) in FE} x[i,j] = 0; /*<= fn;*/
-/* no forbidden edge can be chosen */
-
-/*s.t. r2: sum{(i,j) in E} sum{(k,l) in FE} x[i,j] - x[k,l] >= 1;*/
-/* at least one edge must be chosen & not all forbidden edges can be chosen */
+s.t. r2: sum{(i,j) in E}  x[i,j] >= 1 + sum{(i,j) in FE} x[i,j];
+/* at least one edge must eb chosen && not all forbidden edges can be chosen */
 
 minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
 /* objective function is the path length to be maximized */
