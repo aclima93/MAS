@@ -37,6 +37,9 @@ s.t. r2: sum{(i,j) in E} x[i,j] >= 1;
 s.t. r3: sum{(i,j) in FE} x[i,j] = 0; /*<= fn;*/
 /* no forbidden edge can be chosen */
 
+/*s.t. r2: sum{(i,j) in E} sum{(k,l) in FE} x[i,j] - x[k,l] >= 1;*/
+/* at least one edge must be chosen & not all forbidden edges can be chosen */
+
 minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
 /* objective function is the path length to be maximized */
 

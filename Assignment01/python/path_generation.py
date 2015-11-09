@@ -4,12 +4,12 @@ import sys
 import re
 
 # calculates node coverage
-def node_coverage(path):
+def path_node_coverage(path):
     return len(set(path))
 
 
 # calculates edge coverage
-def edge_coverage(edges, path):
+def path_edge_coverage(edges, path):
     counter = 0
 
     for i in range(len(path) - 1):
@@ -21,7 +21,7 @@ def edge_coverage(edges, path):
 
 
 # calculates edge-pair coverage
-def edge_pair_coverage(edges, path):
+def path_edge_pair_coverage(edges, path):
     counter = 0
 
     for i in range(len(path) - 2):
@@ -32,14 +32,30 @@ def edge_pair_coverage(edges, path):
 
     return counter
 
-def print_path_info(file, path, edges):
+def print_header(file, max_coverage):
+    file.write("data;\n")
+    file.write("\n")
+    file.write("/* Max. Coverage i.e. Coverage of the full graph */\n")
+    file.write("param mc := " + str(max_coverage) + ";\n")
+    file.write("\n")
+    file.write("/* Max. Coverage Percent. */\n")
+    file.write("param mcp := 100;\n")
+    file.write("\n")
+    file.write("/* Items: index, weight, coverage */\n")
+    file.write("set I :=\n")
 
+
+def print_path_info(file, path_index, path, weight, coverage):
+
+    # comments for better understanding of the .dat file
+    file.write("/*\n")
+    file.write("Path Index: " + str(path_index) + '\n')
     file.write("Path: " + str(path) + '\n')
-    file.write("Length: " + str(len(path)) + '\n')
-    file.write("NC: " + str(node_coverage(path)) + '\n')
-    file.write("EC: " + str(edge_coverage(edges, path)) + '\n')
-    file.write("EPC: " + str(edge_pair_coverage(edges, path)) + '\n')
-    file.write('\n')
+    file.write("Weight: " + str(weight) + '\n')
+    file.write("Coverage: " + str(coverage) + '\n')
+    file.write("/*\n")
+    file.write(str(path_index) + " " + str(weight) + " " + str(coverage))
+    file.write('\n\n')
 
 
 # parse edges from file
@@ -87,37 +103,10 @@ def parse_file(file):
     return paths, edges
 
 
-def get_paths_lists_from_dict(paths):
-
-    paths_lists = {}
-
-    for paths_k, paths_v in paths.items():
-
-        cur_node = paths_k
-        path = []
-
-        while paths_v.get(cur_node):
-
-            # counter-measure for cycles dicts
-            if cur_node in path:
-                break
-            else:
-                path.append(cur_node)
-                cur_node = paths_v[cur_node]
-
-        paths_lists[paths_k] = path
-
-    return paths_lists
-
-
 def combine_paths_with_cycles(paths, cycles):
 
-    '''
     print(paths)
-    print(paths_edges)
     print(cycles)
-    print(cycles_edges)
-    '''
 
     # #
     # Paths
@@ -159,10 +148,8 @@ def combine_paths_with_cycles(paths, cycles):
         path.append(cycles_k)  # add the starting node of the cycle for easier fitting afterwards
         cycles_lists[cycles_k] = path
 
-    '''
     print(paths_lists)
     print(cycles_lists)
-    '''
 
     # #
     # Paths With Cycles
@@ -204,32 +191,64 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 5:
+    if argc == 8:
 
-        basic_paths_filename = sys.argv[1]
-        cycles_filename = sys.argv[2]
-        paths_filename = sys.argv[3]
-        output_filename = sys.argv[4]
+        graph_filename = sys.argv[1]
+        basic_paths_filename = sys.argv[2]
+        cycles_filename = sys.argv[3]
+        paths_filename = sys.argv[4]
+        node_coverage_filename = sys.argv[5]
+        edge_coverage_filename = sys.argv[6]
+        edge_pair_coverage_filename = sys.argv[7]
 
+        graph_file = open(graph_filename, 'r')
         basic_paths_file = open(basic_paths_filename, 'r')
         paths_file = open(paths_filename, 'r')
         cycles_file = open(cycles_filename, 'r')
 
+        # load the computed data from the output files
+        graph_paths, graph_edges = parse_file(basic_paths_file)
         basics_paths, basics_paths_edges = parse_file(basic_paths_file)
         paths, paths_edges = parse_file(paths_file)
         cycles, cycles_edges = parse_file(cycles_file)
 
+        graph_file.close()
         basic_paths_file.close()
         paths_file.close()
         cycles_file.close()
 
-        output_file = open(output_filename, 'w')
+        node_coverage_file = open(node_coverage_filename, 'w')
+        edge_coverage_file = open(edge_coverage_filename, 'w')
+        edge_pair_coverage_file = open(edge_pair_coverage_filename, 'w')
 
+        # write beginning of each .dat file
+        graph_path = graph_paths[0]
+        graph_edges = get_path_edges(graph_path)
+        print_header(node_coverage_file, path_node_coverage(graph_path))
+        print_header(edge_coverage_file, path_edge_coverage(graph_edges, graph_path))
+        print_header(edge_pair_coverage_file, path_edge_pair_coverage(graph_edges, graph_path))
+
+        # combine paths and graphs
         paths_with_cycles = combine_paths_with_cycles(paths, cycles)
-        for path in paths_with_cycles:
-            print_path_info(output_file, path, get_path_edges(path))
 
-        output_file.close()
+        # write the data of each .dat file
+        path_index = 0
+        for path in paths_with_cycles:
+            edges = get_path_edges(path)
+            weight = len(path)
+            print_path_info(node_coverage_file, path_index, path, weight, path_node_coverage(path))
+            print_path_info(edge_coverage_file, path_index, path, weight, path_edge_coverage(edges, path))
+            print_path_info(edge_pair_coverage_file, path_index, path, weight, path_edge_pair_coverage(edges, path))
+            path_index += 1
+
+        # write ending of each .dat file
+        node_coverage_file.write(";\n\n end;")
+        edge_coverage_file.write(";\n\n end;")
+        edge_pair_coverage_file.write(";\n\n end;")
+
+        node_coverage_file.close()
+        edge_coverage_file.close()
+        edge_pair_coverage_file.close()
 
     else:
-        print("path_generation expects arguments: <basic paths file> <cycles file> <paths file> <output file>")
+        print("path_generation expects arguments: <graph edges> <basic paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file>")
