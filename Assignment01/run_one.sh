@@ -3,13 +3,7 @@
 # common filename to be used
 filename=$1
 
-# delete the previous results
-rm -r temp/*
-rm -r "outputs/"$filename"_spp_output.dat"
-rm -r "outputs/"$filename"_scpp_output.dat"
-rm -r "outputs/"$filename"_aspp_output.dat"
-
-# we are gonna need these emptied out
+# we are gonna need these emptied out for the loops
 touch "outputs/"$filename"_spp_output.dat"
 touch "outputs/"$filename"_scpp_output.dat"
 touch "outputs/"$filename"_aspp_output.dat"

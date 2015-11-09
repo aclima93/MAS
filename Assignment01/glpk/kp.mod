@@ -25,8 +25,8 @@ s.t. maxCoverage : sum{(i, w, c) in I} ((c * a[i]) * 100) / mc <= mcp;
 
 solve;
 
-printf "\n";
-printf {(i, w, c) in I: a[i] == 1} " %i", i;
+printf "Selected Paths: \n";
+printf {(i, w, c) in I: a[i] == 1} "%i\n", i;
 printf "\n";
 
 end;

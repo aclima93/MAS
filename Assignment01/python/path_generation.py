@@ -55,7 +55,7 @@ def print_path_info(file, path_index, path, weight, coverage):
     file.write("Path: " + str(path) + '\n')
     file.write("Weight: " + str(weight) + '\n')
     file.write("Coverage: " + str(coverage) + '\n')
-    file.write("/*\n")
+    file.write("*/\n")
     file.write(str(path_index) + " " + str(weight) + " " + str(coverage))
     file.write('\n\n')
 
@@ -170,8 +170,10 @@ def combine_paths_with_cycles(paths, cycles):
                 # avoid duplicates
                 if path not in paths_with_cycles:
                     paths_with_cycles.append(path)
+            else:
+                paths_with_cycles.append(paths_lists_v)
 
-    # print(paths_with_cycles)
+    print(paths_with_cycles)
 
     return paths_with_cycles
 
