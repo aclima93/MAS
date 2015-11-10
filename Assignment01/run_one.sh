@@ -34,7 +34,7 @@ do
 	glpsol -m glpk/spp.mod -d "temp/"$filename"_spp_input.dat" > temp/output.tmp
 
 	# add the obtained shortest path to the list of shortest paths
-	python python/spp_output_file_appender.py temp/output.tmp "outputs/"$filename"_spp_output.dat"
+	python python/output_file_appender.py temp/output.tmp "outputs/"$filename"_spp_output.dat"
 done
 
 
@@ -61,12 +61,12 @@ do
     fi 
 
 	# add the obtained shortest cycle to the list of shortest cycles
-	python python/scpp_output_file_appender.py temp/output.tmp "outputs/"$filename"_scpp_output.dat"		
+	python python/output_file_appender.py temp/output.tmp "outputs/"$filename"_scpp_output.dat"		
 
 done
 
 ##
-## All Shortest Paths
+## All Shortest Paths from Source to Target
 echo "Finding All Shortest Paths..."
 
 rm -r temp/last_solution.tmp
@@ -88,7 +88,7 @@ do
     fi 
 
 	# add the obtained shortest path to the list of shortest paths
-	python python/aspp_output_file_appender.py temp/output.tmp "outputs/"$filename"_aspp_output.dat"		
+	python python/output_file_appender.py temp/output.tmp "outputs/"$filename"_aspp_output.dat"		
 
 done
 

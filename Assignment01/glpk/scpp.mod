@@ -29,7 +29,7 @@ s.t. r1{i in 0..n}: sum{(j,i) in E} x[j,i] =
                    sum{(i,j) in E} x[i,j];
 
 s.t. r2: sum{(i,j) in E}  x[i,j] >= 1 + sum{(i,j) in FE} x[i,j];
-/* at least one edge must eb chosen && not all forbidden edges can be chosen */
+/* at least one edge must be chosen && not all forbidden edges can be chosen */
 
 minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
 /* objective function is the path length to be maximized */

@@ -107,7 +107,6 @@ if __name__ == '__main__':
         previous_solutions_file.close()
         # can't repeat edges or GLPK will go haywire and spout an error, yelding only a subset of the solutions
         lines = list(set(lines))
-        lines.remove("\n")
 
         output_file.write("\nset FE :=\n")
         for line in lines:
