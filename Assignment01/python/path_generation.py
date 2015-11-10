@@ -3,6 +3,8 @@ __authors__ = 'aclima, ilpetronilho, pjaneiro'
 import sys
 import re
 
+DEBUG = False
+
 # calculates node coverage
 def path_node_coverage(path):
     return len(set(path))
@@ -40,7 +42,7 @@ def print_header(file, max_coverage):
     file.write("\n")
     file.write("/* Max. Coverage Percent. */\n")
     file.write("param maxCP := " + str(100) + ";\n")
-    file.write("param minCP := " + str(25) + ";\n")
+    file.write("param minCP := " + str(0) + ";\n")
     file.write("\n")
     file.write("/* Items: index, weight, coverage */\n")
     file.write("set I :=\n")
@@ -57,59 +59,77 @@ def print_path_info(file, path_index, path, weight, coverage):
     file.write("Weight: " + str(weight) + '\n')
     file.write("Coverage: " + str(coverage) + '\n')
     file.write("*/\n")
-    file.write(str(path_index) + " " + str(weight) + " " + str(coverage))
-    file.write('\n\n')
+    file.write(str(path_index) + " " + str(weight) + " " + str(coverage) + '\n')
+    file.write('\n')
 
 
 # parse edges from file
 def parse_file(file):
 
     paths = {}
-    edges = {}
-    source = None
-    new_solution = True
-    for line in file.readlines():
+    all_paths_edges = []
+    edges_solution = []
+    lines = file.readlines()
 
-        # strip troublesome whitespace
-        line = line.rstrip().lstrip()
+    if DEBUG:
+        print("filename: ")
+        print(file.name)
+
+    for line in lines:
+
+        if DEBUG:
+            print("line: ")
+            print(line)
 
         # empty line
         if re.match("\n", line):
-            new_solution = True
+            all_paths_edges.append(edges_solution)
+            edges_solution = []
 
         # edge line
         elif re.match("(\d)+ (\d)+", line):
+            node1, node2 = line.split()
+            edges_solution.append( [int(node1), int(node2)] )
 
-            node1, node2 = re.match("(\d)+ (\d)+", line).group(0).split()
-
-            if new_solution:
-                source = int(node1)
-                new_solution = False
-
-            edge = [int(node1), int(node2)]
-
-            if edges.get(source):
-                edges[source].append(edge)
-            else:
-                edges[source] = [edge]
+    if DEBUG:
+        print("all_paths_edges: ")
+        print(all_paths_edges)
+        print("\n")
 
     # remove empty paths and order the rest
-    for source_node, path_edges in edges.items():
+    for path_edges in all_paths_edges:
 
         if len(path_edges) == 0:
-            edges.pop(source_node)
+            all_paths_edges.remove(path_edges)
         else:
-            paths[source_node] = {}
+            path = {}
             for edge in path_edges:
-                paths[source_node][edge[0]] = edge[1]
+                path[edge[0]] = edge[1]
 
-    return paths, edges
+            # the source node is the one key which does not appear in the values
+            source_node = list(set(path.keys()) - set(path.values()))
+
+            if len(source_node) == 1:
+                source_node = source_node[0]
+
+                if source_node in paths:
+                    if path not in paths[source_node]:
+                        paths[source_node].append(path)
+                else:
+                    paths[source_node] = [path]
+
+    return paths, all_paths_edges
 
 
 def combine_paths_with_cycles(paths, cycles):
 
-    print(paths)
-    print(cycles)
+    if DEBUG:
+        print("paths: ")
+        print(paths)
+        print("\n")
+        print("cycles: ")
+        print(cycles)
+        print("\n")
 
     # #
     # Paths
@@ -119,7 +139,7 @@ def combine_paths_with_cycles(paths, cycles):
         cur_node = paths_k
         path = []
 
-        while paths_v.get(cur_node):
+        while cur_node in paths_v:
 
             # counter-measure for cycles dicts
             if cur_node in path:
@@ -151,8 +171,13 @@ def combine_paths_with_cycles(paths, cycles):
         path.append(cycles_k)  # add the starting node of the cycle for easier fitting afterwards
         cycles_lists[cycles_k] = path
 
-    print(paths_lists)
-    print(cycles_lists)
+    if DEBUG:
+        print("paths_lists: ")
+        print(paths_lists)
+        print("\n")
+        print("cycles_lists: ")
+        print(cycles_lists)
+        print("\n")
 
     # #
     # Paths With Cycles
@@ -174,7 +199,10 @@ def combine_paths_with_cycles(paths, cycles):
             else:
                 paths_with_cycles.append(paths_lists_v)
 
-    print(paths_with_cycles)
+    if DEBUG:
+        print("paths_with_cycles: ")
+        print(paths_with_cycles)
+        print("\n")
 
     return paths_with_cycles
 
