@@ -64,7 +64,7 @@ def print_path_info(file, path_index, path, weight, coverage):
 
 
 # parse edges from file
-def parse_file(file):
+def parse_file(file, cycles_flag):
 
     paths = {}
     all_paths_edges = []
@@ -83,7 +83,14 @@ def parse_file(file):
 
         # empty line
         if re.match("\n", line):
-            all_paths_edges.append(edges_solution)
+
+            # remove the last edge, we already know it cycles back to the source
+            # and this way we can check what is the source of the cycle further on
+            if cycles_flag:
+                edges_solution = edges_solution[:-1]
+
+            if edges_solution not in all_paths_edges:
+                all_paths_edges.append(edges_solution)
             edges_solution = []
 
         # edge line
@@ -118,7 +125,39 @@ def parse_file(file):
                 else:
                     paths[source_node] = [path]
 
+    if DEBUG:
+        print("paths: ")
+        print(paths)
+        print("\n")
+        print("all_paths_edges: ")
+        print(all_paths_edges)
+        print("\n")
+
     return paths, all_paths_edges
+
+
+def get_dict_of_lists(dict_of_dicts):
+
+    dict_of_lists = {}
+    for dict_source, dicts in dict_of_dicts.items():
+
+        dict_of_lists[dict_source] = []
+        for cur_dict in dicts:
+            cur_node = dict_source  # source node
+            path = []
+            while cur_node in cur_dict:
+                path.append(cur_node)
+                cur_node = cur_dict[cur_node]
+
+            path.append(cur_node)  # add target node
+            dict_of_lists[dict_source].append(path)
+
+    if DEBUG:
+        print("dict_of_lists: ")
+        print(dict_of_lists)
+        print("\n")
+
+    return dict_of_lists
 
 
 def combine_paths_with_cycles(paths, cycles):
@@ -133,76 +172,48 @@ def combine_paths_with_cycles(paths, cycles):
 
     # #
     # Paths
-    paths_lists = {}
-    for paths_k, paths_v in paths.items():
-
-        cur_node = paths_k
-        path = []
-
-        while cur_node in paths_v:
-
-            # counter-measure for cycles dicts
-            if cur_node in path:
-                break
-            else:
-                path.append(cur_node)
-                cur_node = paths_v[cur_node]
-
-        path.append(cur_node)  # add the target node
-        paths_lists[paths_k] = path
+    if DEBUG:
+        print("paths_lists: ")
+    paths_lists = get_dict_of_lists(paths)
 
     # #
     # Cycles
-    cycles_lists = {}
-    for cycles_k, cycles_v in cycles.items():
-
-        cur_node = cycles_k
-        path = []
-
-        while cycles_v.get(cur_node):
-
-            # counter-measure for cycles dicts
-            if cur_node in path:
-                break
-            else:
-                path.append(cur_node)
-                cur_node = cycles_v[cur_node]
-
-        path.append(cycles_k)  # add the starting node of the cycle for easier fitting afterwards
-        cycles_lists[cycles_k] = path
-
     if DEBUG:
-        print("paths_lists: ")
-        print(paths_lists)
-        print("\n")
         print("cycles_lists: ")
-        print(cycles_lists)
-        print("\n")
+    cycles_lists = get_dict_of_lists(cycles)
 
     # #
     # Paths With Cycles
     paths_with_cycles = []
     for paths_lists_v in paths_lists.values():
-        for cycles_lists_k in cycles_lists.keys():
+        for cycles_source in cycles_lists.keys():
 
-            # example: path = 0,1,4 cycle = 1,2,3,1 result = 0,1,2,3,1,4
-            if cycles_lists_k in paths_lists_v:
-                index = paths_lists_v.index(cycles_lists_k)
-                if index + 1 < len(paths_lists_v):
-                    path = paths_lists_v[:index] + cycles_lists[cycles_lists_k] + paths_lists_v[index + 1:]
-                else:
-                    path = paths_lists_v[:index] + cycles_lists[cycles_lists_k]
+            # example: path = {0: [0,1,4]} cycle = {1: [1,2,3]} result = 0,1,2,3,1,4
+            for path in paths_lists_v:
 
-                # avoid duplicates
                 if path not in paths_with_cycles:
+                    print(path)
                     paths_with_cycles.append(path)
-            else:
-                paths_with_cycles.append(paths_lists_v)
 
-    if DEBUG:
-        print("paths_with_cycles: ")
-        print(paths_with_cycles)
-        print("\n")
+                if cycles_source in path:
+
+                    index = path.index(cycles_source)
+
+                    for cycle in cycles_lists[cycles_source]:
+
+                        if index + 1 < len(path):
+                            resulting_path = path[:index] + cycle + [cycles_source] + path[index + 1:]
+                        else:
+                            resulting_path = path[:index] + cycle + [cycles_source]
+
+                        # avoid duplicates
+                        if resulting_path not in paths_with_cycles:
+                            print(resulting_path)
+                            paths_with_cycles.append(resulting_path)
+
+    print("paths_with_cycles: ")
+    print(paths_with_cycles)
+    print("\n")
 
     return paths_with_cycles
 
@@ -269,9 +280,9 @@ if __name__ == '__main__':
 
         # load the computed data from the output files
         graph_edges = graph_file.readlines()
-        basics_paths, basics_paths_edges = parse_file(basic_paths_file)
-        paths, paths_edges = parse_file(paths_file)
-        cycles, cycles_edges = parse_file(cycles_file)
+        basics_paths, basics_paths_edges = parse_file(basic_paths_file, False)
+        paths, paths_edges = parse_file(paths_file, False)
+        cycles, cycles_edges = parse_file(cycles_file, True)
 
         graph_file.close()
         basic_paths_file.close()
