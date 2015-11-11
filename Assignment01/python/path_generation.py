@@ -192,7 +192,6 @@ def combine_paths_with_cycles(paths, cycles):
             for path in paths_lists_v:
 
                 if path not in paths_with_cycles:
-                    print(path)
                     paths_with_cycles.append(path)
 
                 if cycles_source in path:
@@ -208,12 +207,12 @@ def combine_paths_with_cycles(paths, cycles):
 
                         # avoid duplicates
                         if resulting_path not in paths_with_cycles:
-                            print(resulting_path)
                             paths_with_cycles.append(resulting_path)
 
-    print("paths_with_cycles: ")
-    print(paths_with_cycles)
-    print("\n")
+    if DEBUG:
+        print("paths_with_cycles: ")
+        print(paths_with_cycles)
+        print("\n")
 
     return paths_with_cycles
 
