@@ -42,7 +42,7 @@ def print_header(file, max_coverage):
     file.write("\n")
     file.write("/* Max. Coverage Percent. */\n")
     file.write("param maxCP := " + str(100) + ";\n")
-    file.write("param minCP := " + str(0) + ";\n")
+    file.write("param minCP := " + str(75) + ";\n")  # only yhis one has to be tweeked for testing purposes
     file.write("\n")
     file.write("/* Items: index, weight, coverage */\n")
     file.write("set I :=\n")
@@ -54,8 +54,8 @@ def print_path_info(file, path_index, path, weight, coverage):
 
     # comments for better understanding of the .dat file
     file.write("/*\n")
-    file.write("Path Index: " + str(path_index) + '\n')
     file.write("Path: " + str(path) + '\n')
+    file.write("Path Index: " + str(path_index) + '\n')
     file.write("Weight: " + str(weight) + '\n')
     file.write("Coverage: " + str(coverage) + '\n')
     file.write("*/\n")
@@ -223,8 +223,6 @@ def get_path_edges(path):
         edge = path[i:i + 2]
         if edge not in edges:
             edges.append(edge)
-
-    # print(edges)
 
     return edges
 

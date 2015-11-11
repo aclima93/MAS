@@ -19,7 +19,7 @@ set J := setof{(i, w, c) in I} i;
 var a{J}, binary;
 
 
-maximize obj : sum{(i, w, c) in I} a[i] * w;
+minimize obj : sum{(i, w, c) in I} a[i] * w;
 
 /* At least one path must be chosen */
 s.t. pathSelected: sum{(i, w, c) in I} a[i] >= 1;
