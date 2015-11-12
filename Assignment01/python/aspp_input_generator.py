@@ -55,17 +55,20 @@ end;
 """
 
 import sys
+import re
 
 if __name__ == '__main__':
 
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 4:
+    if argc == 6:
 
         input_filename = sys.argv[1]
         previous_solutions_filename = sys.argv[2]
-        output_filename = sys.argv[3]
+        aspp_1_filename = sys.argv[3]
+        aspp_2_filename = sys.argv[4]
+        output_filename = sys.argv[5]
 
         input_file = open(input_filename, 'r')
 
@@ -95,23 +98,56 @@ if __name__ == '__main__':
         # write to output file
         output_file = open(output_filename, 'w')
 
-        output_file.write("data;\n\n")
-
-        output_file.write(str("param n := ") + str(num_vertices) + str(";\n"))
-        output_file.write(str("param s := ") + str(source) + str(";\n"))
-        output_file.write(str("param t := ") + str(target) + str(";\n"))
+        # write 1st half of aspp.mod model
+        aspp_1_file = open(aspp_1_filename, 'r')
+        for line in aspp_1_file.readlines():
+            output_file.write(line)
+        aspp_1_file.close()
 
         # write previous found solutions as forbidden edges for the this iteration
         previous_solutions_file = open(previous_solutions_filename, 'r')
         lines = previous_solutions_file.readlines()
         previous_solutions_file.close()
-        # can't repeat edges or GLPK will go haywire and spout an error, yelding only a subset of the solutions
-        lines = list(set(lines))
 
-        output_file.write("\nset FE :=\n")
+        all_paths_edges = []
+        edges_solution = []
         for line in lines:
+
+            # empty line
+            if re.match("\n", line):
+
+                if edges_solution not in all_paths_edges:
+                    all_paths_edges.append(edges_solution)
+                edges_solution = []
+
+            # edge line
+            elif re.match("(\d)+ (\d)+", line):
+                node1, node2 = line.split()
+                edges_solution.append( [int(node1), int(node2)] )
+
+        constraint_counter = 0
+        for edges_solution in all_paths_edges:
+            constraint_counter += 1
+            constraint = "\ns.t. constraint" + str(constraint_counter) + ": (sum{(i,j) in E} x[i,j]) - ( "
+            sums = ""
+            for edge in edges_solution[:-1]:
+                sums += "x[" + str(edge[0]) + "," + str(edge[1]) + "] + "
+            sums += "x[" + str(edges_solution[-1][0]) + "," + str(edges_solution[-1][1]) + "]"
+            # s.t. constraint5: (sum{(j,i) in E} x[j,i]) - ( <edge_1> + ... + <edge_m> ) >= 1;
+            constraint += sums + " ) >= " + str(1) + ";"
+            output_file.write( constraint)
+
+        # write 2nd half of aspp.mod model
+        aspp_2_file = open(aspp_2_filename, 'r')
+        for line in aspp_2_file.readlines():
             output_file.write(line)
-        output_file.write(";\n")
+        aspp_2_file.close()
+
+        # write problem data for aspp.mod
+        output_file.write("data;\n\n")
+        output_file.write(str("param n := ") + str(num_vertices) + str(";\n"))
+        output_file.write(str("param s := ") + str(source) + str(";\n"))
+        output_file.write(str("param t := ") + str(target) + str(";\n"))
 
         output_file.write("\nparam : E :   c :=")
         for node1, node2 in edges:
@@ -123,4 +159,4 @@ if __name__ == '__main__':
         output_file.close()
 
     else:
-        print("aspp_input_generator expects arguments: <input file> <previous solutions file> <output file> ")
+        print("aspp_input_generator expects arguments: <input file> <previous solutions file> <aspp_1 file> <aspp_2 file> <output file> ")

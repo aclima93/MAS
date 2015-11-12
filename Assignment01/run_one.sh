@@ -75,10 +75,23 @@ while true
 do
 
 	# create an appropriate .dat file for our .mod file from the given .dat
-	python python/aspp_input_generator.py "inputs/"$filename".dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_aspp_input.dat"
+	python python/aspp_input_generator.py "inputs/"$filename".dat" "outputs/"$filename"_aspp_output.dat" "glpk/aspp_1.mod" "glpk/aspp_2.mod" "glpk/"$filename"_aspp.mod"
 
 	# get the shortest path from source to target without using the already discovered solutions
-	glpsol -m glpk/aspp.mod -d "temp/"$filename"_aspp_input.dat" > temp/output.tmp
+	glpsol -m "glpk/"$filename"_aspp.mod" > temp/output.tmp
+
+	#file="glpk/"$filename"_aspp.mod"
+	#while IFS= read -r line
+	#do
+	#	printf '%s\n' "$line"
+	#done < "$file"
+
+	# printing solution for DEBUG purposes
+	#file="temp/output.tmp"
+	#while IFS= read -r line
+	#do
+	#	printf '%s\n' "$line"
+	#done < "$file"
 
 	# if no more solutions to be found
 	if [ $(python python/continue_searching.py temp/output.tmp temp/last_solution.tmp) = "False" ]; then
