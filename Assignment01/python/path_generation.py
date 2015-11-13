@@ -43,15 +43,21 @@ def print_header(file, num_paths, max_coverage):
     file.write("/* Min. Coverage Percent. */\n")
     file.write("param minCP := " + str(75) + ";\n")  # only this one has to be tweeked for testing purposes
     file.write("\n")
+    file.write("/* Number of Paths */\n")
+    file.write("param n := " + str(num_paths) + ";\n")
+    file.write("\n")
 
 def print_weight_set(file):
-    file.write("\nparam W :=\n")
+    file.write("\nparam w :=\n")
 
 def print_weight_set_end(file):
     file.write(";\n")
 
-def print_coverage_set(file):
-    file.write("\nparam C :=\n")
+def print_coverage_set(file, len_coverage):
+    range_str = ""
+    for i in range(1, len_coverage + 1):
+        range_str += str(i) + " "
+    file.write("\nparam f : " + range_str + " :=\n")
 
 def print_coverage_set_end(file):
     file.write(";\n")
@@ -72,7 +78,7 @@ def print_path_coverage(file, path_index, path, path_edges, all_edges):
         else:
             coverage += "0 "
 
-    file.write(coverage + '\n')
+    file.write(str(path_index) + " " + coverage + '\n')
     file.write('\n')
 
 def print_path_weight(file, path_index, path, weight):
@@ -335,12 +341,12 @@ if __name__ == '__main__':
         # #
         # Coverage Data
 
-        print_coverage_set(node_coverage_file)
-        print_coverage_set(edge_coverage_file)
-        print_coverage_set(edge_pair_coverage_file)
+        print_coverage_set(node_coverage_file, len(graph_nodes))
+        print_coverage_set(edge_coverage_file, len(graph_edges))
+        print_coverage_set(edge_pair_coverage_file, len(graph_edge_pairs))
 
         # write the coverage data to each .dat file
-        path_index = 0
+        path_index = 1
         for path in paths_with_cycles:
             edges = get_path_edges(path)
             nodes = get_nodes_from_edges(edges)
@@ -369,7 +375,7 @@ if __name__ == '__main__':
         print_weight_set(edge_pair_coverage_file)
 
         # write the weight data to each .dat file
-        path_index = 0
+        path_index = 1
         for path in paths_with_cycles:
             weight = len(path)
 

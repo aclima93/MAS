@@ -11,31 +11,34 @@ param minCP, integer, >= 0;
 param n, integer, >= 0;
 /* number of paths */
 
-/* Coverages matrix for each path */
-param C{i in 0..n, j in 0..maxC}, integer, >= 0;
+set I := {i in 1..n};
+set J := {j in 1..maxC};
 
-/* Items: index, weight */
-set W, dimen 2;
+/* Path Coverage Frequency Matrix */
+param f{i in I, j in J}, binary, >= 0;
 
-/* Indices */
-set J := setof{(i, w) in W} i;
+/* Path Weight Matrix */
+param w{i in I}, integer, >= 0;
 
-/* Assignment */
-var a{J}, binary, >= 0;
+/* Path Selection Matrix */
+var x{I}, binary, >= 0;
 
 
-minimize obj : sum{(i, w) in W} a[i] * w;
+minimize obj : sum{i in I} x[i] * w[i];
 
 /* At least one path must be chosen */
-s.t. pathSelected: sum{(i, w) in W} a[i] >= 1;
+s.t. pathSelected: sum{i in I} x[i] >= 1;
 
-/* Cover at least Min. Coverage Percent. of everything */
-/*s.t. minCoverage : sum{(i, w) in W} ((c * a[i]) * 100) / maxC >= minCP;*/
+/* Selected Paths Coverage */
+s.t. pathCoverage: sum{i in I, j in J} f[i,j] * x[i] >= 1;
+
+/* Cover at least Min. Coverage Percent. */
+/*s.t. minPathCoverage : ((f[i,j] * x[i]) * 100) / maxC >= minCP;*/
 
 solve;
 
 printf "Selected Paths: \n";
-printf {(i, w) in W: a[i] == 1} "%d %d\n", i, w;
+printf {i in I: x[i] == 1} "%d ", i;
 printf "\n";
 
 end;
