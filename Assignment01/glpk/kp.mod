@@ -36,6 +36,9 @@ s.t. pathSelected: sum{i in I} x[i] >= 1;
 */
 
 /* Selected Paths Coverage */
+/*s.t. pathCoverage{j in J}: sum{i in I} ((f[i,j] * x[i]) * 100) / maxC >= minCP;*/
+
+/* Selected Paths Coverage */
 s.t. pathCoverage{j in J}: sum{i in I} f[i,j] * x[i] >= 1;
 
 /* Cover at least Min. Coverage Percent. */

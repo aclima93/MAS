@@ -4,7 +4,7 @@
 filename=$1
 
 # delete the previous results
-for dir_path in "outputs/" "temp/"
+for dir_path in "outputs/" "temp/" "img_outputs/"
 do
 	cd $dir_path
 	find . -type f -name $filename\* | xargs rm -r
@@ -108,9 +108,6 @@ do
 	# knapsack for coverage problem
 	glpsol -m glpk/kp.mod -d "temp/"$filename"_"$coverage_problem"_input.dat" > "outputs/"$filename"_"$coverage_problem".dat"
 done
-
-# plot the graph and chosen paths for easier verification
-python python/output_graphs.py "inputs/"$filename".dat" "outputs/"$filename"_node_coverage.dat" "outputs/"$filename"_edge_coverage.dat" "outputs/"$filename"_edge_pair_coverage.dat" "temp/"$filename"_paths_with_cycles.dat"
 
 ##
 ## Done

@@ -44,6 +44,7 @@ import sys
 import re
 import networkx as nx
 import matplotlib.pyplot as plt
+import pylab
 
 
 def get_solutions_edges(lines):
@@ -55,7 +56,8 @@ def get_solutions_edges(lines):
         # empty line
         if re.match("\n", line):
             if edges not in solutions:
-                solutions.append(edges)
+                if len(edges):  # no empty solutions
+                    solutions.append(edges)
             edges = []
 
         # edge line
@@ -66,13 +68,13 @@ def get_solutions_edges(lines):
     return solutions
 
 
-def draw_graph(graph):
+def draw_graph(graph, filename):
 
     # extract nodes from graph
     nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
     # create networkx graph
-    nx_graph = nx.DiGraph()
+    nx_graph = nx.MultiDiGraph()
 
     # add nodes
     for node in nodes:
@@ -83,25 +85,27 @@ def draw_graph(graph):
         nx_graph.add_edge(edge[0], edge[1])
 
     # draw graph
-    pos = nx.shell_layout(nx_graph)
+    pos = nx.spring_layout(nx_graph)
     nx.draw(nx_graph, pos)
 
+    pylab.savefig(filename + '.png', bbox_inches='tight')
+
     # show graph
-    plt.show()
+    # plt.show()
 
 
 if __name__ == '__main__':
 
-    argc = len(sys.argv)  # program name also counts
+    path = "../"
+    filenames = ["cfg0", "cfg1", "cfg2", "cfg3", "cfg4"]
 
-    # input file
-    if argc == 6:
+    for filename in filenames:
 
-        graph_filename = sys.argv[1]
-        node_coverage_filename = sys.argv[2]
-        edge_coverage_filename = sys.argv[3]
-        edge_pair_coverage_filename = sys.argv[4]
-        paths_with_cycles_filename = sys.argv[5]
+        graph_filename = path + "inputs/" + filename + ".dat"
+        node_coverage_filename = path + "outputs/" + filename + "_node_coverage.dat"
+        edge_coverage_filename = path + "outputs/" + filename + "_edge_coverage.dat"
+        edge_pair_coverage_filename = path + "outputs/" + filename + "_edge_pair_coverage.dat"
+        paths_with_cycles_filename = path + "temp/" + filename + "_paths_with_cycles.dat"
 
         # read input file and filter useful information
         graph_file = open(graph_filename, 'r')
@@ -113,12 +117,12 @@ if __name__ == '__main__':
         paths_with_cycles_file.close()
 
         # read solution indexes returned by kp.mod
-        filenames = [node_coverage_filename, edge_coverage_filename, edge_pair_coverage_filename]
+        coverage_filenames = [node_coverage_filename, edge_coverage_filename, edge_pair_coverage_filename]
         solutions_indexes = []
-        for filename in filenames:
+        for coverage_filename in coverage_filenames:
 
-            file = open(filename, 'w')
-            data_lines = file.readlines()
+            coverage_file = open(coverage_filename, 'r')
+            data_lines = coverage_file.readlines()
             indexes = []
 
             if ("=== START ===\n" in data_lines) and ("=== END ===\n" in data_lines):
@@ -131,12 +135,16 @@ if __name__ == '__main__':
                     indexes.append(int(line.rstrip().lstrip()))  # remove right and left whitespace then split
 
             solutions_indexes.append(indexes)
-            file.close()
+            coverage_file.close()
 
-        draw_graph(graph_edges)
+        draw_graph(graph_edges, filename + "_graph")
+        coverage_str = ["_node_coverage", "_edge_coverage", "_edge_pais_coverage"]
+        i = 0
         for indexes in solutions_indexes:
+            all_in_one_graph = graph_edges.copy()
             for index in indexes:
-                draw_graph(paths_with_cycles_edges[index - 1])
+                all_in_one_graph += paths_with_cycles_edges[index - 1]
+            draw_graph(all_in_one_graph, filename + coverage_str[i] )
+            i += 1
 
-    else:
-        print("output_graphs expects arguments: <graph file> <coverage output file> <edge coverage output file> <edge-pair coverage output file> <paths with cycles file>")
+
