@@ -3,35 +3,39 @@
 /* Written in GNU MathProg inspired on https://en.wikibooks.org/wiki/GLPK/Knapsack_Problem */
 
 /* Max. Coverage */
-param maxC;
+param maxC, integer, >= 0;
 
-/* Max., Min Coverage Percent. */
-param maxCP;
-param minCP;
+/* Min Coverage Percent. */
+param minCP, integer, >= 0;
 
-/* Items: index, weight, coverage */
-set I, dimen 3;
+param n, integer, >= 0;
+/* number of paths */
+
+/* Coverages matrix for each path */
+param C{i in 0..n, j in 0..maxC}, integer, >= 0;
+
+/* Items: index, weight */
+set W, dimen 2;
 
 /* Indices */
-set J := setof{(i, w, c) in I} i;
+set J := setof{(i, w) in W} i;
 
 /* Assignment */
-var a{J}, binary;
+var a{J}, binary, >= 0;
 
 
-minimize obj : sum{(i, w, c) in I} a[i] * w;
+minimize obj : sum{(i, w) in W} a[i] * w;
 
 /* At least one path must be chosen */
-s.t. pathSelected: sum{(i, w, c) in I} a[i] >= 1;
+s.t. pathSelected: sum{(i, w) in W} a[i] >= 1;
 
-/* Covegare between Min. and Max. Coverage Percent. */
-s.t. minCoverage : sum{(i, w, c) in I} ((c * a[i]) * 100) / maxC >= minCP;
-s.t. maxCoverage : sum{(i, w, c) in I} ((c * a[i]) * 100) / maxC <= maxCP;
+/* Cover at least Min. Coverage Percent. of everything */
+/*s.t. minCoverage : sum{(i, w) in W} ((c * a[i]) * 100) / maxC >= minCP;*/
 
 solve;
 
 printf "Selected Paths: \n";
-printf {(i, w, c) in I: a[i] == 1} "%d %d %d\n", i, w, c;
+printf {(i, w) in W: a[i] == 1} "%d %d\n", i, w;
 printf "\n";
 
 end;

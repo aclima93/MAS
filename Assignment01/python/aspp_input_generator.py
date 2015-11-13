@@ -133,7 +133,7 @@ if __name__ == '__main__':
             for edge in edges_solution[:-1]:
                 sums += "x[" + str(edge[0]) + "," + str(edge[1]) + "] + "
             sums += "x[" + str(edges_solution[-1][0]) + "," + str(edges_solution[-1][1]) + "]"
-            # s.t. constraint5: (sum{(j,i) in E} x[j,i]) - ( <edge_1> + ... + <edge_m> ) >= 1;
+            # s.t. constraint_n: (sum{(j,i) in E} x[j,i]) - ( <edge_1> + ... + <edge_m> ) >= 1;
             constraint += sums + " ) >= " + str(1) + ";"
             output_file.write( constraint)
 
