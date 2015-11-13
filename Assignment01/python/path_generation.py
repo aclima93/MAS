@@ -213,13 +213,13 @@ def combine_paths_with_cycles(paths, cycles):
     # Paths With Cycles
     paths_with_cycles = []
     for paths_lists_v in paths_lists.values():
-        for cycles_source in cycles_lists.keys():
+        # example: path = {0: [0,1,4]} cycle = {1: [1,2,3]} result = 0,1,2,3,1,4
+        for path in paths_lists_v:
 
-            # example: path = {0: [0,1,4]} cycle = {1: [1,2,3]} result = 0,1,2,3,1,4
-            for path in paths_lists_v:
+            if path not in paths_with_cycles:
+                paths_with_cycles.append(path)
 
-                if path not in paths_with_cycles:
-                    paths_with_cycles.append(path)
+            for cycles_source in cycles_lists.keys():
 
                 if cycles_source in path:
 

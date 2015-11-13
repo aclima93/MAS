@@ -26,19 +26,25 @@ var x{I}, binary, >= 0;
 
 minimize obj : sum{i in I} x[i] * w[i];
 
+/*
+minimize obj : sum{i in I} x[i];
+*/
+
 /* At least one path must be chosen */
+/*
 s.t. pathSelected: sum{i in I} x[i] >= 1;
+*/
 
 /* Selected Paths Coverage */
-s.t. pathCoverage: sum{i in I, j in J} f[i,j] * x[i] >= 1;
+s.t. pathCoverage{j in J}: sum{i in I} f[i,j] * x[i] >= 1;
 
 /* Cover at least Min. Coverage Percent. */
 /*s.t. minPathCoverage : ((f[i,j] * x[i]) * 100) / maxC >= minCP;*/
 
 solve;
 
-printf "Selected Paths: \n";
-printf {i in I: x[i] == 1} "%d ", i;
-printf "\n";
+printf('=== START ===\n');
+printf {i in I: x[i] == 1} "%d\n", i;
+printf('=== END ===\n\n');
 
 end;
