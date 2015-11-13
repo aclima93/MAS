@@ -299,7 +299,7 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 8:
+    if argc == 9:
 
         graph_filename = sys.argv[1]
         basic_paths_filename = sys.argv[2]
@@ -308,6 +308,7 @@ if __name__ == '__main__':
         node_coverage_filename = sys.argv[5]
         edge_coverage_filename = sys.argv[6]
         edge_pair_coverage_filename = sys.argv[7]
+        paths_with_cycles_filename = sys.argv[8]
 
         graph_file = open(graph_filename, 'r')
         basic_paths_file = open(basic_paths_filename, 'r')
@@ -331,6 +332,17 @@ if __name__ == '__main__':
 
         # combine paths and graphs
         paths_with_cycles = combine_paths_with_cycles(paths, cycles)
+
+        # save paths for easier access later on
+        paths_with_cycles_file = open(paths_with_cycles_filename, 'w')
+        for path in paths_with_cycles:
+            edges = get_path_edges(path)
+            for edge in edges:
+                for node in edge:
+                    paths_with_cycles_file.write(str(node) + " ")
+                paths_with_cycles_file.write("\n")  # separate edges
+            paths_with_cycles_file.write("\n")  # separate solutions
+        paths_with_cycles_file.close()
 
         # write beginning of each .dat file
         num_paths = len(paths_with_cycles)
@@ -404,4 +416,4 @@ if __name__ == '__main__':
         edge_pair_coverage_file.close()
 
     else:
-        print("path_generation expects arguments: <graph edges> <basic paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file>")
+        print("path_generation expects arguments: <graph edges> <basic paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file> <paths with cycles file>")

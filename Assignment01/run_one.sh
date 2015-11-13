@@ -80,19 +80,6 @@ do
 	# get the shortest path from source to target without using the already discovered solutions
 	glpsol -m "glpk/"$filename"_aspp.mod" > temp/output.tmp
 
-	#file="glpk/"$filename"_aspp.mod"
-	#while IFS= read -r line
-	#do
-	#	printf '%s\n' "$line"
-	#done < "$file"
-
-	# printing solution for DEBUG purposes
-	#file="temp/output.tmp"
-	#while IFS= read -r line
-	#do
-	#	printf '%s\n' "$line"
-	#done < "$file"
-
 	# if no more solutions to be found
 	if [ $(python python/continue_searching.py temp/output.tmp temp/last_solution.tmp) = "False" ]; then
 		break
@@ -110,23 +97,27 @@ done
 echo "Combining Paths and Cycles..."
 
 # combine patsh and cycles and create files for knapsack coverage problem
-python python/path_generation.py "inputs/"$filename".dat" "outputs/"$filename"_spp_output.dat" "outputs/"$filename"_scpp_output.dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_node_coverage_input.dat" "temp/"$filename"_edge_coverage_input.dat" "temp/"$filename"_edge_pair_coverage_input.dat"		
+python python/path_generation.py "inputs/"$filename".dat" "outputs/"$filename"_spp_output.dat" "outputs/"$filename"_scpp_output.dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_node_coverage_input.dat" "temp/"$filename"_edge_coverage_input.dat" "temp/"$filename"_edge_pair_coverage_input.dat" "temp/"$filename"_paths_with_cycles.dat"
 
 ##
 ## Select paths with cycles for best coverage
 echo "Selecting Paths..."
 
-# knapsack for node coverage
-glpsol -m glpk/kp.mod -d "temp/"$filename"_node_coverage_input.dat" > "outputs/"$filename"_node_coverage.dat"
+for coverage_problem in "node_coverage" "edge_coverage" "edge_pair_coverage"
+do
+	# knapsack for coverage problem
+	glpsol -m glpk/kp.mod -d "temp/"$filename"_"$coverage_problem"_input.dat" > "outputs/"$filename"_"$coverage_problem".dat"
+done
 
-# knapsack for edge coverage
-glpsol -m glpk/kp.mod -d "temp/"$filename"_edge_coverage_input.dat" > "outputs/"$filename"_edge_coverage.dat"
-
-# knapsack for edge-pair coverage
-glpsol -m glpk/kp.mod -d "temp/"$filename"_edge_pair_coverage_input.dat" > "outputs/"$filename"_edge_pair_coverage.dat"
+# plot the graph and chosen paths for easier verification
+python python/output_graphs.py "inputs/"$filename".dat" "outputs/"$filename"_node_coverage.dat" "outputs/"$filename"_edge_coverage.dat" "outputs/"$filename"_edge_pair_coverage.dat" "temp/"$filename"_paths_with_cycles.dat"
 
 ##
 ## Done
 
 echo "Done."
 echo ""
+
+
+
+

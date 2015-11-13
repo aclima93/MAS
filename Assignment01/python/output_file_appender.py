@@ -1,6 +1,6 @@
 __authors__ = 'aclima, ilpetronilho, pjaneiro'
 """
-Strip the excess information from the GLPK spp.mod output and add it to the colective output file
+Strip the excess information from the GLPK output and add it to the colective output file
 
 ----------INPUT-----------
 GLPSOL: GLPK LP/MIP Solver, v4.52
