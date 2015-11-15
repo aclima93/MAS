@@ -34,6 +34,25 @@ def path_edge_pair_coverage(edges, path):
 
     return counter
 
+
+def get_basis_edges(solutions_edges):
+    basis_edges = []
+    non_basic_edges = []
+
+    # get non-basic edges
+    for edges in solutions_edges:
+        if edges[0] not in non_basic_edges:
+            non_basic_edges.append(edges[0])
+
+    # get basis_edges edges
+    for edges in solutions_edges:
+        for edge in edges:
+            if edge not in basis_edges:
+                basis_edges.append(edges[0])
+
+    return basis_edges
+
+
 def print_header(file, num_paths, max_coverage):
     file.write("data;\n")
     file.write("\n")
@@ -302,7 +321,7 @@ if __name__ == '__main__':
     if argc == 9:
 
         graph_filename = sys.argv[1]
-        basic_paths_filename = sys.argv[2]
+        shortest_paths_filename = sys.argv[2]
         cycles_filename = sys.argv[3]
         paths_filename = sys.argv[4]
         node_coverage_filename = sys.argv[5]
@@ -311,20 +330,23 @@ if __name__ == '__main__':
         paths_with_cycles_filename = sys.argv[8]
 
         graph_file = open(graph_filename, 'r')
-        basic_paths_file = open(basic_paths_filename, 'r')
+        shortest_paths_file = open(shortest_paths_filename, 'r')
         paths_file = open(paths_filename, 'r')
         cycles_file = open(cycles_filename, 'r')
 
         # load the computed data from the output files
         graph_nodes, graph_edges, graph_edge_pairs = parse_graph_file(graph_file.readlines())
-        basics_paths, basics_paths_edges = parse_file(basic_paths_file, False)
+        shortest_paths, shortest_paths_edges = parse_file(shortest_paths_file, False)
         paths, paths_edges = parse_file(paths_file, False)
         cycles, cycles_edges = parse_file(cycles_file, True)
 
         graph_file.close()
-        basic_paths_file.close()
+        shortest_paths_file.close()
         paths_file.close()
         cycles_file.close()
+
+        # get the basis edges from
+        basis_edges = get_basis_edges(shortest_paths_edges)
 
         node_coverage_file = open(node_coverage_filename, 'w')
         edge_coverage_file = open(edge_coverage_filename, 'w')
@@ -332,11 +354,22 @@ if __name__ == '__main__':
 
         # combine paths and graphs
         paths_with_cycles = combine_paths_with_cycles(paths, cycles)
+        for path in paths_with_cycles:
+            edges = get_path_edges(path)
 
-        # save paths for easier access later on
+            # only paths that have at most one occorrence of each basis edge are relevant
+            for basis_edge in basis_edges:
+                if edges.count(basis_edge) > 1:
+                    paths_with_cycles.remove(path)
+                    break
+
+
+        # save relevant paths for easier access later on
         paths_with_cycles_file = open(paths_with_cycles_filename, 'w')
         for path in paths_with_cycles:
             edges = get_path_edges(path)
+
+            # write the path's edges to the file
             for edge in edges:
                 for node in edge:
                     paths_with_cycles_file.write(str(node) + " ")
@@ -416,4 +449,4 @@ if __name__ == '__main__':
         edge_pair_coverage_file.close()
 
     else:
-        print("path_generation expects arguments: <graph edges> <basic paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file> <paths with cycles file>")
+        print("path_generation expects arguments: <graph edges> <shortest paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file> <paths with cycles file>")

@@ -17,6 +17,7 @@ touch "outputs/"$filename"_spp_output.dat"
 touch "outputs/"$filename"_scpp_output.dat"
 touch "outputs/"$filename"_aspp_output.dat"
 
+echo ""
 echo "Running for "$filename""
 
 ##

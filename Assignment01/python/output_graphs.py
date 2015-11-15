@@ -45,6 +45,7 @@ import re
 import networkx as nx
 import matplotlib.pyplot as plt
 import pylab
+import numpy as np
 
 
 def get_solutions_edges(lines):
@@ -74,21 +75,19 @@ def draw_graph(graph, filename):
     nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
     # create networkx graph
-    nx_graph = nx.MultiDiGraph()
+    nx_graph = nx.DiGraph()
 
     # add nodes
-    for node in nodes:
-        nx_graph.add_node(node)
+    nx_graph.add_nodes_from(nodes)
 
     # add edges
-    for edge in graph:
-        nx_graph.add_edge(edge[0], edge[1])
+    nx_graph.add_edges_from(graph)
 
     # draw graph
-    pos = nx.spring_layout(nx_graph)
-    nx.draw(nx_graph, pos)
+    nx.draw(nx_graph, nx.graphviz_layout(nx_graph, prog='neat'))
+    #nx.draw(nx_graph, nx.spring_layout(nx_graph), node_size=1, edge_size=1, scale=1, node_cmap=plt.cm.Blues)
 
-    pylab.savefig(filename + '.png', bbox_inches='tight')
+    pylab.savefig("../img_outputs/" + filename + '.png', bbox_inches='tight')
 
     # show graph
     # plt.show()
@@ -138,12 +137,14 @@ if __name__ == '__main__':
             coverage_file.close()
 
         draw_graph(graph_edges, filename + "_graph")
-        coverage_str = ["_node_coverage", "_edge_coverage", "_edge_pais_coverage"]
+        coverage_str = ["_node_coverage", "_edge_coverage", "_edge_pairs_coverage"]
         i = 0
         for indexes in solutions_indexes:
             all_in_one_graph = graph_edges.copy()
             for index in indexes:
-                all_in_one_graph += paths_with_cycles_edges[index - 1]
+                for edge in paths_with_cycles_edges[index - 1]:
+                    if edge not in all_in_one_graph:
+                        all_in_one_graph.append(edge)
             draw_graph(all_in_one_graph, filename + coverage_str[i] )
             i += 1
 
