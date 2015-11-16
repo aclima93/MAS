@@ -101,8 +101,10 @@ done
 ## Combine Shortest Paths with Cycles
 echo "Combining Paths and Cycles..."
 
+coverage_percentage="50"
+
 # combine patsh and cycles and create files for knapsack coverage problem
-python python/path_generation.py "inputs/"$filename".dat" "outputs/"$filename"_spp_output.dat" "outputs/"$filename"_scpp_output.dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_node_coverage_input.dat" "temp/"$filename"_edge_coverage_input.dat" "temp/"$filename"_edge_pair_coverage_input.dat" "temp/"$filename"_paths_with_cycles.dat"
+python python/path_generation.py "inputs/"$filename".dat" "outputs/"$filename"_spp_output.dat" "outputs/"$filename"_scpp_output.dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_node_coverage_input.dat" "temp/"$filename"_edge_coverage_input.dat" "temp/"$filename"_edge_pair_coverage_input.dat" "temp/"$filename"_paths_with_cycles.dat" $coverage_percentage
 
 ##
 ## Select paths with cycles for best coverage

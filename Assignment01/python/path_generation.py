@@ -55,14 +55,14 @@ def get_basis_edges(solutions_paths, solutions_edges, all_graph_edges):
     return basis_edges
 
 
-def print_header(file, num_paths, max_coverage):
+def print_header(file, num_paths, max_coverage, min_coverage):
     file.write("data;\n")
     file.write("\n")
     file.write("/* Max. Coverage i.e. Coverage of the full graph */\n")
     file.write("param maxC := " + str(max_coverage) + ";\n")
     file.write("\n")
     file.write("/* Min. Coverage Percent. */\n")
-    file.write("param minCP := " + str(50) + ";\n")  # only this one has to be tweeked for testing purposes
+    file.write("param minCP := " + min_coverage + ";\n")  # only this one has to be tweeked for testing purposes
     file.write("\n")
     file.write("/* Number of Paths */\n")
     file.write("param n := " + str(num_paths) + ";\n")
@@ -236,8 +236,6 @@ def combine_paths_with_cycles(paths, cycles):
                             if resulting_path not in paths_with_cycles:
                                 paths_with_cycles.append(resulting_path)
 
-    print(paths_with_cycles)
-
     return paths_with_cycles
 
 
@@ -296,7 +294,7 @@ if __name__ == '__main__':
     argc = len(sys.argv)  # program name also counts
 
     # input file
-    if argc == 9:
+    if argc == 10:
 
         graph_filename = sys.argv[1]
         shortest_paths_filename = sys.argv[2]
@@ -306,6 +304,7 @@ if __name__ == '__main__':
         edge_coverage_filename = sys.argv[6]
         edge_pair_coverage_filename = sys.argv[7]
         paths_with_cycles_filename = sys.argv[8]
+        partial_coverage_percentage = sys.argv[9]
 
         graph_file = open(graph_filename, 'r')
         shortest_paths_file = open(shortest_paths_filename, 'r')
@@ -340,7 +339,6 @@ if __name__ == '__main__':
             for basis_edge in basis_edges:
                 if edges.count(basis_edge) > 1:
                     paths_with_cycles.remove(path)
-                    # print("\n\nIM RELEVANT\n\n")
                     break
 
         # save relevant paths for easier access later on
@@ -428,4 +426,4 @@ if __name__ == '__main__':
         edge_pair_coverage_file.close()
 
     else:
-        print("path_generation expects arguments: <graph edges> <shortest paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file> <paths with cycles file>")
+        print("path_generation expects arguments: <graph edges> <shortest paths file> <cycles file> <paths file> <node coverage output file> <edge coverage output file> <edge-pair coverage output file> <paths with cycles file> <partial coverage percentage>")

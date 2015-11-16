@@ -1,7 +1,4 @@
-/* KP, Knapsack Problem */
-
-/* Written in GNU MathProg inspired on 
-https://en.wikibooks.org/wiki/GLPK/Knapsack_Problem */
+/* Partial Coverage Problem */
 
 /* Max. Coverage */
 param maxC, integer, >= 0;
