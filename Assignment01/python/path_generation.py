@@ -62,7 +62,7 @@ def print_header(file, num_paths, max_coverage):
     file.write("param maxC := " + str(max_coverage) + ";\n")
     file.write("\n")
     file.write("/* Min. Coverage Percent. */\n")
-    file.write("param minCP := " + str(75) + ";\n")  # only this one has to be tweeked for testing purposes
+    file.write("param minCP := " + str(50) + ";\n")  # only this one has to be tweeked for testing purposes
     file.write("\n")
     file.write("/* Number of Paths */\n")
     file.write("param n := " + str(num_paths) + ";\n")
