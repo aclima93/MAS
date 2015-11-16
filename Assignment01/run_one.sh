@@ -3,11 +3,16 @@
 # common filename to be used
 filename=$1
 
+# create folders
+mkdir -p "outputs"
+mkdir -p "temp"
+mkdir -p "img_outputs"
+
 # delete the previous results
 for dir_path in "outputs/" "temp/" "img_outputs/"
 do
 	cd $dir_path
-	find . -type f -name $filename\* | xargs rm -r
+	find . -type f -name $filename\* | xargs rm
 	cd ..
 
 done	
