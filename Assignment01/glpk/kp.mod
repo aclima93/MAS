@@ -25,7 +25,7 @@ param w{i in I}, integer, >= 0;
 var x{I}, binary, >= 0;
 
 /* Checks if column is covered */
-var t{J}, integer, >=0;
+var t{J}, binary, >=0;
 
 /* Minimize with respect to the weight of each path */
 minimize obj : sum{i in I} x[i] * w[i];
