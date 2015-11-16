@@ -1,3 +1,5 @@
+import itertools
+
 __authors__ = 'aclima, ilpetronilho, pjaneiro'
 
 import sys
@@ -175,47 +177,66 @@ def get_dict_of_lists(dict_of_dicts):
                 cur_node = cur_dict[cur_node]
 
             path.append(cur_node)  # add target node
-            dict_of_lists[dict_source].append(path)
+            if path not in dict_of_lists[dict_source]:
+                dict_of_lists[dict_source].append(path)
 
     return dict_of_lists
 
 
 def combine_paths_with_cycles(paths, cycles):
 
-    # #
     # Paths
     paths_lists = get_dict_of_lists(paths)
 
-    # #
     # Cycles
     cycles_lists = get_dict_of_lists(cycles)
 
-    # #
     # Paths With Cycles
     paths_with_cycles = []
     for paths_lists_v in paths_lists.values():
         # example: path = {0: [0,1,4]} cycle = {1: [1,2,3]} result = 0,1,2,3,1,4
         for path in paths_lists_v:
 
+            # path before adding cycles must also be included
             if path not in paths_with_cycles:
                 paths_with_cycles.append(path)
 
-            for cycles_source in cycles_lists.keys():
+            # check if this path shares a node with the cycles
+            for cycles_lists_v in cycles_lists.values():
 
-                if cycles_source in path:
+                relevant_cycles = []
+                relevant_cycles_sources = []
 
-                    index = path.index(cycles_source)
+                for cycle in cycles_lists_v:
+                    for node in cycle:
+                        if node in path:
+                            relevant_cycles.append(cycle)
+                            relevant_cycles_sources.append(node)
+                            break
 
-                    for cycle in cycles_lists[cycles_source]:
+                # all combinations of cycles (through their indexes in the list)
+                iterable = range(len(relevant_cycles))
+                for s in range(len(iterable) + 1):
+                    for comb in itertools.combinations(iterable, s):
 
-                        if index + 1 < len(path):
-                            resulting_path = path[:index] + cycle + [cycles_source] + path[index + 1:]
-                        else:
-                            resulting_path = path[:index] + cycle + [cycles_source]
+                        resulting_path = path[:]
 
-                        # avoid duplicates
-                        if resulting_path not in paths_with_cycles:
-                            paths_with_cycles.append(resulting_path)
+                        for cycle_index in comb:
+
+                            cycles_source = relevant_cycles_sources[cycle_index]
+                            common_node_index = resulting_path.index(cycles_source)  # index of shared node between cycle and path
+                            cycle = relevant_cycles[cycle_index]
+
+                            if common_node_index + 1 < len(resulting_path):
+                                resulting_path = resulting_path[:common_node_index] + cycle + [cycles_source] + resulting_path[common_node_index + 1:]
+                            else:
+                                resulting_path = resulting_path[:common_node_index] + cycle + [cycles_source]
+
+                            # avoid duplicates
+                            if resulting_path not in paths_with_cycles:
+                                paths_with_cycles.append(resulting_path)
+
+    print(paths_with_cycles)
 
     return paths_with_cycles
 

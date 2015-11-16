@@ -14,7 +14,6 @@ do
 	cd $dir_path
 	find . -type f -name $filename\* | xargs rm
 	cd ..
-
 done	
 
 # we are gonna need these emptied out for the loops

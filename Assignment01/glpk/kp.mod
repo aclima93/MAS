@@ -24,7 +24,7 @@ param w{i in I}, integer, >= 0;
 /* Path Selection Matrix */
 var x{I}, binary, >= 0;
 
-/* Checks if column is covered */
+/* Checks if column (node, edge, edge-pair) is covered */
 var t{J}, binary, >=0;
 
 /* Minimize with respect to the weight of each path */
@@ -33,14 +33,9 @@ minimize obj : sum{i in I} x[i] * w[i];
 /* Selected Paths Coverage & with leat one is chosen */
 /*s.t. pathCoverage{j in J}: sum{i in I} f[i,j] * x[i] >= 1;*/
 s.t. columnCover{j in J}: t[j] = sum{i in I} f[i,j] * x[i];
-s.t. minPathCoverage: sum{j in J} t[j] * 100 >= minCP * maxC;
 
 /* Cover at least Min. Coverage Percent. */
-/*s.t. minPathCoverage{j in J}: sum{i in I} f[i,j] * x[i] * 100 >= minCP * maxC;*/
-/* a soma dos elementos a cobrir (nó, aresta, etc.) cobertos mais do que uma vez 
-tem de ser >= à mínima cobertura desejada */
-/*s.t. minPathCoverage: (100 / maxC) * sum{j in J, i in I} f[i,j] <= minCP;*/
-
+s.t. minPathCoverage: sum{j in J} t[j] * 100 >= minCP * maxC;
 
 solve;
 
