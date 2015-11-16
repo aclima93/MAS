@@ -101,7 +101,7 @@ done
 ## Combine Shortest Paths with Cycles
 echo "Combining Paths and Cycles..."
 
-coverage_percentage="50"
+coverage_percentage="75"
 
 # combine patsh and cycles and create files for knapsack coverage problem
 python python/path_generation.py "inputs/"$filename".dat" "outputs/"$filename"_spp_output.dat" "outputs/"$filename"_scpp_output.dat" "outputs/"$filename"_aspp_output.dat" "temp/"$filename"_node_coverage_input.dat" "temp/"$filename"_edge_coverage_input.dat" "temp/"$filename"_edge_pair_coverage_input.dat" "temp/"$filename"_paths_with_cycles.dat" $coverage_percentage
@@ -112,8 +112,11 @@ echo "Selecting Paths..."
 
 for coverage_problem in "node_coverage" "edge_coverage" "edge_pair_coverage"
 do
-	# knapsack for coverage problem
-	glpsol -m glpk/kp.mod -d "temp/"$filename"_"$coverage_problem"_input.dat" > "outputs/"$filename"_"$coverage_problem".dat"
+	# solution for total coverage problem
+	glpsol -m glpk/total_coverage.mod -d "temp/"$filename"_"$coverage_problem"_input.dat" > "outputs/"$filename"_"$coverage_problem"_100.dat"
+
+	# solution for partial coverage problem
+	glpsol -m glpk/partial_coverage.mod -d "temp/"$filename"_"$coverage_problem"_input.dat" > "outputs/"$filename"_"$coverage_problem"_"$coverage_percentage".dat"
 done
 
 ##

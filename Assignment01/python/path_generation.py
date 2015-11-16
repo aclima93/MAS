@@ -356,9 +356,9 @@ if __name__ == '__main__':
 
         # write beginning of each .dat file
         num_paths = len(paths_with_cycles)
-        print_header(node_coverage_file, num_paths, len(graph_nodes))
-        print_header(edge_coverage_file, num_paths, len(graph_edges))
-        print_header(edge_pair_coverage_file, num_paths, len(graph_edge_pairs))
+        print_header(node_coverage_file, num_paths, len(graph_nodes), partial_coverage_percentage)
+        print_header(edge_coverage_file, num_paths, len(graph_edges), partial_coverage_percentage)
+        print_header(edge_pair_coverage_file, num_paths, len(graph_edge_pairs), partial_coverage_percentage)
 
         # #
         # Coverage Data

@@ -27,8 +27,7 @@ var t{J}, binary, >=0;
 /* Minimize with respect to the weight of each path */
 minimize obj : sum{i in I} x[i] * w[i];
 
-/* Selected Paths Coverage & with leat one is chosen */
-/*s.t. pathCoverage{j in J}: sum{i in I} f[i,j] * x[i] >= 1;*/
+/* Fill the auxiliary variable with whether each column is covered or not */
 s.t. columnCover{j in J}: t[j] = sum{i in I} f[i,j] * x[i];
 
 /* Cover at least Min. Coverage Percent. */
