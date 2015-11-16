@@ -35,14 +35,16 @@ def path_edge_pair_coverage(edges, path):
     return counter
 
 
-def get_basis_edges(solutions_edges):
+def get_basis_edges(solutions_paths, solutions_edges):
     basis_edges = []
     non_basic_edges = []
 
     # get non-basic edges
-    for edges in solutions_edges:
-        if edges[0] not in non_basic_edges:
-            non_basic_edges.append(edges[0])
+    for solution_path_source_node, solution_path_dict in solutions_paths.items():
+        for path_dict in solution_path_dict:
+            first_edge = [solution_path_source_node, path_dict[solution_path_source_node]]
+            if first_edge not in non_basic_edges:
+                non_basic_edges.append(first_edge)
 
     # get basis_edges edges
     for edges in solutions_edges:
@@ -117,15 +119,7 @@ def parse_file(file, cycles_flag):
     edges_solution = []
     lines = file.readlines()
 
-    if DEBUG:
-        print("filename: ")
-        print(file.name)
-
     for line in lines:
-
-        if DEBUG:
-            print("line: ")
-            print(line)
 
         # empty line
         if re.match("\n", line):
@@ -143,11 +137,6 @@ def parse_file(file, cycles_flag):
         elif re.match("(\d)+ (\d)+", line):
             node1, node2 = line.split()
             edges_solution.append( [int(node1), int(node2)] )
-
-    if DEBUG:
-        print("all_paths_edges: ")
-        print(all_paths_edges)
-        print("\n")
 
     # remove empty paths and order the rest
     for path_edges in all_paths_edges:
@@ -171,14 +160,6 @@ def parse_file(file, cycles_flag):
                 else:
                     paths[source_node] = [path]
 
-    if DEBUG:
-        print("paths: ")
-        print(paths)
-        print("\n")
-        print("all_paths_edges: ")
-        print(all_paths_edges)
-        print("\n")
-
     return paths, all_paths_edges
 
 
@@ -198,34 +179,17 @@ def get_dict_of_lists(dict_of_dicts):
             path.append(cur_node)  # add target node
             dict_of_lists[dict_source].append(path)
 
-    if DEBUG:
-        print("dict_of_lists: ")
-        print(dict_of_lists)
-        print("\n")
-
     return dict_of_lists
 
 
 def combine_paths_with_cycles(paths, cycles):
 
-    if DEBUG:
-        print("paths: ")
-        print(paths)
-        print("\n")
-        print("cycles: ")
-        print(cycles)
-        print("\n")
-
     # #
     # Paths
-    if DEBUG:
-        print("paths_lists: ")
     paths_lists = get_dict_of_lists(paths)
 
     # #
     # Cycles
-    if DEBUG:
-        print("cycles_lists: ")
     cycles_lists = get_dict_of_lists(cycles)
 
     # #
@@ -254,11 +218,6 @@ def combine_paths_with_cycles(paths, cycles):
                         # avoid duplicates
                         if resulting_path not in paths_with_cycles:
                             paths_with_cycles.append(resulting_path)
-
-    if DEBUG:
-        print("paths_with_cycles: ")
-        print(paths_with_cycles)
-        print("\n")
 
     return paths_with_cycles
 
@@ -346,7 +305,7 @@ if __name__ == '__main__':
         cycles_file.close()
 
         # get the basis edges from
-        basis_edges = get_basis_edges(shortest_paths_edges)
+        basis_edges = get_basis_edges(shortest_paths, shortest_paths_edges)
 
         node_coverage_file = open(node_coverage_filename, 'w')
         edge_coverage_file = open(edge_coverage_filename, 'w')
@@ -362,7 +321,6 @@ if __name__ == '__main__':
                 if edges.count(basis_edge) > 1:
                     paths_with_cycles.remove(path)
                     break
-
 
         # save relevant paths for easier access later on
         paths_with_cycles_file = open(paths_with_cycles_filename, 'w')

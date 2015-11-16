@@ -28,13 +28,13 @@ var x{(i,j) in E}, >= 0;
    note that variables x[i,j] are binary, however, there is no need to
    declare them so due to the totally unimodular constraint matrix */
 
+minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
+/* objective function is the path length to be minimized */
+
 s.t. r{i in 0..n}: sum{(j,i) in E} x[j,i] + (if i = s then 1) =
                    sum{(i,j) in E} x[i,j] + (if i = t then 1);
 /* conservation conditions for unity flow from s to t; every feasible
    solution is a path from s to t */
-
-minimize Z: sum{(i,j) in E} c[i,j] * x[i,j];
-/* objective function is the path length to be minimized */
 
 solve;
 
