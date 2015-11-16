@@ -3,8 +3,6 @@ __authors__ = 'aclima, ilpetronilho, pjaneiro'
 import sys
 import re
 
-DEBUG = False
-
 # calculates node coverage
 def path_node_coverage(path):
     return len(set(path))
@@ -35,7 +33,7 @@ def path_edge_pair_coverage(edges, path):
     return counter
 
 
-def get_basis_edges(solutions_paths, solutions_edges):
+def get_basis_edges(solutions_paths, solutions_edges, all_graph_edges):
     basis_edges = []
     non_basic_edges = []
 
@@ -47,10 +45,10 @@ def get_basis_edges(solutions_paths, solutions_edges):
                 non_basic_edges.append(first_edge)
 
     # get basis_edges edges
-    for edges in solutions_edges:
-        for edge in edges:
-            if edge not in basis_edges:
-                basis_edges.append(edges[0])
+    for edge in all_graph_edges:
+        if edge not in non_basic_edges:  # basis edges are edges that are not non-basic
+            if edge not in basis_edges:  # avoid duplicates
+                basis_edges.append(edge)
 
     return basis_edges
 
@@ -305,7 +303,7 @@ if __name__ == '__main__':
         cycles_file.close()
 
         # get the basis edges from
-        basis_edges = get_basis_edges(shortest_paths, shortest_paths_edges)
+        basis_edges = get_basis_edges(shortest_paths, shortest_paths_edges, graph_edges)
 
         node_coverage_file = open(node_coverage_filename, 'w')
         edge_coverage_file = open(edge_coverage_filename, 'w')
@@ -313,13 +311,15 @@ if __name__ == '__main__':
 
         # combine paths and graphs
         paths_with_cycles = combine_paths_with_cycles(paths, cycles)
+
+        # only paths that have at most one occorrence of each basis edge are relevant
         for path in paths_with_cycles:
             edges = get_path_edges(path)
 
-            # only paths that have at most one occorrence of each basis edge are relevant
             for basis_edge in basis_edges:
                 if edges.count(basis_edge) > 1:
                     paths_with_cycles.remove(path)
+                    # print("\n\nIM RELEVANT\n\n")
                     break
 
         # save relevant paths for easier access later on

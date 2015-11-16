@@ -49,8 +49,15 @@ s.t. constraint0_3{i in 0..n}: sum{(i,j) in E} x[i,j] + (if i = t then 1) <= 1;
  	Note2: this in turn is another great way to find both all paths 
  	from source to target and all cycles unrelated to each of those paths */
 
-s.t. constraint1: (sum{(i,j) in E} x[i,j]) - ( x[0,2] + x[2,3] ) >= 1;
-s.t. constraint2: (sum{(i,j) in E} x[i,j]) - ( x[0,1] + x[1,3] ) >= 1;
+s.t. constraint1: (sum{(i,j) in E} x[i,j]) - ( x[0,9] ) >= 1;
+s.t. constraint2: (sum{(i,j) in E} x[i,j]) - ( x[0,5] + x[5,9] ) >= 1;
+s.t. constraint3: (sum{(i,j) in E} x[i,j]) - ( x[0,1] + x[1,9] ) >= 1;
+s.t. constraint4: (sum{(i,j) in E} x[i,j]) - ( x[0,5] + x[5,7] + x[7,9] ) >= 1;
+s.t. constraint5: (sum{(i,j) in E} x[i,j]) - ( x[0,5] + x[5,6] + x[6,9] ) >= 1;
+s.t. constraint6: (sum{(i,j) in E} x[i,j]) - ( x[0,1] + x[1,4] + x[4,9] ) >= 1;
+s.t. constraint7: (sum{(i,j) in E} x[i,j]) - ( x[0,1] + x[1,2] + x[2,9] ) >= 1;
+s.t. constraint8: (sum{(i,j) in E} x[i,j]) - ( x[0,1] + x[1,2] + x[2,3] + x[3,9] ) >= 1;
+s.t. constraint9: (sum{(i,j) in E} x[i,j]) - ( x[0,5] + x[5,7] + x[7,8] + x[8,9] ) >= 1;
 
 solve;
 
@@ -61,14 +68,27 @@ printf{(i,j) in E}:'%d\t%d\t%d\n', i, j, x[i,j];
 printf('=== END ===\n\n');
 data;
 
-param n := 4;
+param n := 10;
 param s := 0;
-param t := 3;
+param t := 9;
 
 param : E :   c :=
 0	1	1
-0	2	1
-1	3	1
-2	3	1;
+0	5	1
+0	9	1
+1	2	1
+1	4	1
+1	9	1
+2	3	1
+2	9	1
+3	9	1
+4	9	1
+5	6	1
+5	7	1
+5	9	1
+6	9	1
+7	8	1
+7	9	1
+8	9	1;
 
 end;
