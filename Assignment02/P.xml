@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
+    <state name="0" marked="true" initial="true">
+        <position x="145" y="65"/>
+        <size width="40" height="40"/>
+        <initialPosition x="-28" y="-28"/>
+    </state>
+    <state name="1" marked="false">
+        <position x="225" y="65"/>
+        <size width="40" height="40"/>
+    </state>
+    <state name="2" marked="false">
+        <position x="315" y="65"/>
+        <size width="40" height="40"/>
+    </state>
+    <state name="3" marked="false">
+        <position x="405" y="65"/>
+        <size width="40" height="40"/>
+    </state>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="0" to="1" legal="true"/>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="1" to="2" legal="true"/>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="2" to="3" legal="true"/>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="2" to="0" legal="true"/>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="3" to="1" legal="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a" observable="true" controllable="true">
+        <AgentProperty observable="true" controllable="true"/>
+    </event>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="r" observable="true" controllable="true">
+        <AgentProperty observable="true" controllable="true"/>
+    </event>
+    <initial>0</initial>
+</XmlAutomaton>
