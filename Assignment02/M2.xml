@@ -2,18 +2,21 @@
 <XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
     <state name="B" marked="false">
         <position x="180" y="95"/>
-        <size width="40" height="40"/>
+        <size width="10" height="40"/>
     </state>
-    <state name="I" marked="false" initial="true">
+    <state name="I" marked="true" initial="true">
         <position x="90" y="95"/>
-        <size width="40" height="40"/>
+        <size width="10" height="40"/>
+        <initialPosition x="-28" y="-28"/>
     </state>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="B" to="I" legal="true"/>
-    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="I" to="B" legal="true"/>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a" observable="true" controllable="true">
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I" to="B" legal="true">
+        <pathPoint x="155" y="95"/>
+    </transition>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d2" observable="true" controllable="true">
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
     <initial>I</initial>
