@@ -29,7 +29,7 @@
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="BI" to="II2" legal="true"/>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="BI" to="BB" legal="true">
-        <pathPoint x="385" y="176"/>
+        <pathPoint x="381" y="173"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="IB" to="II1" legal="true"/>

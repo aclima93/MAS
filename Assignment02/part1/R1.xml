@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
     <state name="BB" marked="false">
-        <position x="80" y="90"/>
+        <position x="215" y="207"/>
         <size width="40" height="40"/>
     </state>
     <state name="BI" marked="false">
-        <position x="80" y="180"/>
+        <position x="105" y="213"/>
         <size width="40" height="40"/>
     </state>
     <state name="IB" marked="false">
-        <position x="80" y="0"/>
+        <position x="221" y="116"/>
         <size width="40" height="40"/>
     </state>
     <state name="II" marked="true" initial="true">
-        <position x="77" y="270"/>
+        <position x="102" y="112"/>
         <size width="46" height="46"/>
         <initialPosition x="-28" y="-28"/>
     </state>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="BB" to="IB" legal="true">
-        <pathPoint x="102" y="74"/>
+        <pathPoint x="257" y="177"/>
         <labelPosition x="386" y="-13"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="BB" to="BI" legal="true">
-        <pathPoint x="80" y="155"/>
+        <pathPoint x="167" y="223"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="BI" to="II" legal="true">
-        <pathPoint x="100" y="246"/>
+        <pathPoint x="144" y="174"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="BI" to="BB" legal="true">
-        <pathPoint x="118" y="155"/>
+        <pathPoint x="178" y="255"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="IB" to="II" legal="true">
-        <pathPoint x="150" y="110"/>
-        <pathPoint x="150" y="200"/>
-        <labelPosition x="500" y="0"/>
+        <pathPoint x="194" y="113"/>
+        <pathPoint x="164" y="115"/>
+        <labelPosition x="544" y="1"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="IB" to="BB" legal="true">
-        <pathPoint x="62" y="66"/>
+        <pathPoint x="218" y="169"/>
         <labelPosition x="500" y="21"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="II" to="BI" legal="true">
-        <pathPoint x="74" y="238"/>
+        <pathPoint x="102" y="175"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d1" observable="true" controllable="true">
