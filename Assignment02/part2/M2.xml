@@ -28,9 +28,6 @@
         <pathPoint x="157" y="150"/>
         <labelPosition x="500" y="0"/>
     </transition>
-    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="I" to="C" legal="true">
-        <labelPosition x="500" y="0"/>
-    </transition>
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
