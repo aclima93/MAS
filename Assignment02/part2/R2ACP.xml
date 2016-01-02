@@ -660,11 +660,11 @@
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a1" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="true" controllable="true">
-        <AgentProperty observable="true" controllable="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="true" controllable="true">
-        <AgentProperty observable="true" controllable="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
     </event>
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d1" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>

@@ -61,9 +61,9 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,C" to="B,C" legal="true">
-        <pathPoint x="53" y="-2"/>
-        <pathPoint x="73" y="-17"/>
-        <pathPoint x="93" y="-2"/>
+        <pathPoint x="53" y="-3"/>
+        <pathPoint x="73" y="-18"/>
+        <pathPoint x="93" y="-3"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="B,C" to="I,C" legal="true">
@@ -75,7 +75,7 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,I" to="B,B" legal="true">
-        <pathPoint x="211" y="244"/>
+        <pathPoint x="210" y="243"/>
         <pathPoint x="155" y="72"/>
         <labelPosition x="500" y="0"/>
     </transition>
@@ -118,7 +118,7 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,I" to="C,B" legal="true">
-        <pathPoint x="245" y="215"/>
+        <pathPoint x="245" y="214"/>
         <pathPoint x="60" y="155"/>
         <labelPosition x="500" y="0"/>
     </transition>
@@ -126,8 +126,8 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,B" to="B,B" legal="true">
-        <pathPoint x="247" y="108"/>
-        <pathPoint x="187" y="64"/>
+        <pathPoint x="246" y="108"/>
+        <pathPoint x="186" y="64"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="I,B" to="C,B" legal="true">
@@ -140,17 +140,17 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,C" to="B,C" legal="true">
-        <pathPoint x="196" y="67"/>
-        <pathPoint x="122" y="67"/>
+        <pathPoint x="196" y="27"/>
+        <pathPoint x="122" y="27"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="I,C" to="C,C" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I,C" to="I,C" legal="true">
-        <pathPoint x="225" y="-2"/>
-        <pathPoint x="245" y="-17"/>
-        <pathPoint x="265" y="-2"/>
+        <pathPoint x="225" y="-3"/>
+        <pathPoint x="245" y="-18"/>
+        <pathPoint x="265" y="-3"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,I1" to="B,I" legal="true">
@@ -170,14 +170,14 @@
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a1" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="true" controllable="true">
-        <AgentProperty observable="true" controllable="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
     </event>
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="true" controllable="true">
-        <AgentProperty observable="true" controllable="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
     </event>
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d1" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>

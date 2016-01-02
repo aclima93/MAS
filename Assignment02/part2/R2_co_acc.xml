@@ -35,13 +35,13 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,I" to="B,B" legal="true">
-        <pathPoint x="211" y="244"/>
+        <pathPoint x="210" y="243"/>
         <pathPoint x="155" y="72"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,B" to="B,B" legal="true">
-        <pathPoint x="247" y="108"/>
-        <pathPoint x="187" y="64"/>
+        <pathPoint x="246" y="108"/>
+        <pathPoint x="186" y="64"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="I,B" to="I,I1" legal="true">
@@ -65,11 +65,11 @@
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="true" controllable="true">
-        <AgentProperty observable="true" controllable="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="true" controllable="true">
-        <AgentProperty observable="true" controllable="true"/>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
     </event>
     <initial>I,I1</initial>
 </XmlAutomaton>
