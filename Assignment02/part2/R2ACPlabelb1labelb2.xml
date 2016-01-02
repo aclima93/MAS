@@ -188,9 +188,9 @@
         <position x="1041" y="4316"/>
         <size width="130" height="40"/>
     </state>
-    <state name="I,I1,0,0,N1,N2" marked="false" initial="true">
+    <state name="I,I1,0,0,N1,N2" marked="true" initial="true">
         <position x="2360" y="4719"/>
-        <size width="140" height="40"/>
+        <size width="140" height="46"/>
         <initialPosition x="-28" y="-28"/>
     </state>
     <state name="I,I1,1,1,N1,N2" marked="false">
@@ -201,9 +201,9 @@
         <position x="1408" y="196"/>
         <size width="140" height="40"/>
     </state>
-    <state name="I,I2,0,0,N1,N2" marked="false">
+    <state name="I,I2,0,0,N1,N2" marked="true">
         <position x="172" y="3245"/>
-        <size width="140" height="40"/>
+        <size width="140" height="46"/>
     </state>
     <state name="I,I2,1,1,N1,N2" marked="false">
         <position x="3902" y="4146"/>

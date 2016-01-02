@@ -188,9 +188,9 @@
         <position x="1068" y="3882"/>
         <size width="130" height="40"/>
     </state>
-    <state name="I,I,0,0,N1,N2" marked="false" initial="true">
+    <state name="I,I,0,0,N1,N2" marked="true" initial="true">
         <position x="2064" y="4138"/>
-        <size width="130" height="40"/>
+        <size width="130" height="46"/>
         <initialPosition x="-28" y="-28"/>
     </state>
     <state name="I,I,1,1,N1,N2" marked="false">

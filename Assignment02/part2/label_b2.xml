@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
-    <state name="N2" marked="false" initial="true">
+    <state name="N2" marked="true" initial="true">
         <position x="294" y="147"/>
         <size width="20" height="0"/>
         <initialPosition x="-28" y="-28"/>
     </state>
-    <state name="Y2" marked="false">
+    <state name="Y2" marked="true">
         <position x="405" y="147"/>
         <size width="20" height="40"/>
     </state>

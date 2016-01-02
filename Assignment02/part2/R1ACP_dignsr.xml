@@ -168,9 +168,9 @@
         <position x="14217" y="4065"/>
         <size width="410" height="40"/>
     </state>
-    <state name="I,I,0,0,N1,N2,C,I,0,0,Y1,N2,I,C,0,0,N1,Y2,C,C,0,0,Y1,Y2" marked="false" initial="true">
+    <state name="I,I,0,0,N1,N2,C,I,0,0,Y1,N2,I,C,0,0,N1,Y2,C,C,0,0,Y1,Y2" marked="true" initial="true">
         <position x="7523" y="15035"/>
-        <size width="550" height="40"/>
+        <size width="550" height="46"/>
         <initialPosition x="-28" y="-28"/>
     </state>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="B,B,0,2,N1,N2,C,B,0,2,Y1,N2,B,C,0,2,N1,Y2,C,C,0,2,Y1,Y2" to="C,C,0,3,Y1,Y2,C,B,0,3,Y1,N2" legal="true">
@@ -302,8 +302,8 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,C,0,2,Y1,Y2" to="C,C,0,3,Y1,Y2" legal="true">
-        <pathPoint x="3038" y="272"/>
-        <pathPoint x="616" y="734"/>
+        <pathPoint x="3038" y="271"/>
+        <pathPoint x="615" y="734"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,C,0,2,Y1,Y2,C,I,0,2,Y1,N2" to="C,C,0,3,Y1,Y2,C,I,0,3,Y1,N2" legal="true">
