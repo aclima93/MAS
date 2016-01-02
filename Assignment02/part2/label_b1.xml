@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
+    <state name="N1" marked="false" initial="true">
+        <position x="294" y="147"/>
+        <size width="20" height="0"/>
+        <initialPosition x="-28" y="-28"/>
+    </state>
+    <state name="Y1" marked="false">
+        <position x="405" y="147"/>
+        <size width="20" height="40"/>
+    </state>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="N1" to="Y1" legal="true"/>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="Y1" to="Y1" legal="true">
+        <pathPoint x="405" y="117"/>
+        <pathPoint x="425" y="102"/>
+        <pathPoint x="445" y="117"/>
+    </transition>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b1" observable="false" controllable="true">
+        <AgentProperty observable="false" controllable="true"/>
+    </event>
+    <initial>N1</initial>
+</XmlAutomaton>
