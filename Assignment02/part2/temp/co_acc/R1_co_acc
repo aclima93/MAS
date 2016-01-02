@@ -1,0 +1,20 @@
+4
+
+I,I	1	1
+a1	B,I	c	o
+
+B,I	0	2
+d1	I,I	c	o
+a2	B,B	c	o
+
+B,B	0	2
+d1	I,B	c	o
+d2	B,I	c	o
+
+I,B	0	2
+a1	B,B	c	o
+d2	I,I	c	o
+
+EVENTS
+b1	c	uo
+b2	c	uo

@@ -1,0 +1,50 @@
+9
+
+I,I	1	4
+a1	B,I	c	o
+b1	C,I	c	uo
+a2	I,B	c	o
+b2	I,C	c	uo
+
+B,I	0	4
+b1	C,I	c	uo
+a2	B,B	c	o
+b2	B,C	c	uo
+d1	I,I	c	o
+
+C,I	0	3
+a1	C,I	c	o
+a2	C,B	c	o
+b2	C,C	c	uo
+
+I,B	0	4
+a1	B,B	c	o
+b1	C,B	c	uo
+b2	I,C	c	uo
+d2	I,I	c	o
+
+I,C	0	3
+a1	B,C	c	o
+b1	C,C	c	uo
+a2	I,C	c	o
+
+B,B	0	4
+b1	C,B	c	uo
+b2	B,C	c	uo
+d1	I,B	c	o
+d2	B,I	c	o
+
+B,C	0	3
+b1	C,C	c	uo
+a2	B,C	c	o
+d1	I,C	c	o
+
+C,B	0	3
+a1	C,B	c	o
+b2	C,C	c	uo
+d2	C,I	c	o
+
+C,C	0	2
+a1	C,C	c	o
+a2	C,C	c	o
+

@@ -4,10 +4,6 @@
         <position x="180" y="149"/>
         <size width="40" height="40"/>
     </state>
-    <state name="C" marked="false">
-        <position x="140" y="84"/>
-        <size width="40" height="40"/>
-    </state>
     <state name="I" marked="true" initial="true">
         <position x="90" y="149"/>
         <size width="46" height="46"/>
@@ -16,25 +12,14 @@
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="B" to="I" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
-    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="B" to="C" legal="true">
-        <labelPosition x="500" y="0"/>
-    </transition>
-    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C" to="C" legal="true">
-        <pathPoint x="140" y="54"/>
-        <pathPoint x="160" y="39"/>
-        <pathPoint x="180" y="54"/>
-    </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I" to="B" legal="true">
         <pathPoint x="157" y="150"/>
         <labelPosition x="500" y="0"/>
     </transition>
-    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="I" to="C" legal="true">
-        <labelPosition x="500" y="0"/>
-    </transition>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d2" observable="true" controllable="true">
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
-    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a2" observable="true" controllable="true">
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d2" observable="true" controllable="true">
         <AgentProperty observable="true" controllable="true"/>
     </event>
     <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="b2" observable="false" controllable="true">

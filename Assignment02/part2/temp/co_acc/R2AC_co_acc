@@ -1,0 +1,60 @@
+15
+
+I,I1,0	1	1
+a1	B,I,0	c	o
+
+B,I,0	0	2
+d1	I,I2,1	c	o
+a2	B,B,0	c	o
+
+B,B,0	0	2
+d1	I,B,1	c	o
+d2	B,I,1	c	o
+
+I,B,1	0	2
+a1	B,B,1	c	o
+d2	I,I1,2	c	o
+
+B,I,1	0	2
+d1	I,I2,2	c	o
+a2	B,B,1	c	o
+
+B,B,1	0	2
+d1	I,B,2	c	o
+d2	B,I,2	c	o
+
+I,B,2	0	2
+a1	B,B,2	c	o
+r	I,B,0	c	o
+
+B,I,2	0	2
+r	B,I,0	c	o
+a2	B,B,2	c	o
+
+B,B,2	0	1
+r	B,B,0	c	o
+
+I,I2,1	0	1
+a2	I,B,1	c	o
+
+I,I2,2	0	2
+r	I,I2,0	c	o
+a2	I,B,2	c	o
+
+I,B,0	0	2
+a1	B,B,0	c	o
+d2	I,I1,1	c	o
+
+I,I1,1	0	1
+a1	B,I,1	c	o
+
+I,I1,2	0	2
+a1	B,I,2	c	o
+r	I,I1,0	c	o
+
+I,I2,0	1	1
+a2	I,B,0	c	o
+
+EVENTS
+b1	c	o
+b2	c	o
