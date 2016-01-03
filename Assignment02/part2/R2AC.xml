@@ -1,154 +1,189 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
     <state name="B,B,0" marked="false">
-        <position x="767" y="773"/>
+        <position x="366" y="270"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,B,1" marked="false">
-        <position x="858" y="343"/>
+        <position x="351" y="0"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,B,2" marked="false">
-        <position x="60" y="259"/>
+        <position x="600" y="180"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,C,0" marked="false">
-        <position x="877" y="433"/>
+        <position x="390" y="816"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,C,1" marked="false">
-        <position x="182" y="123"/>
+        <position x="542" y="543"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,C,2" marked="false">
-        <position x="114" y="773"/>
+        <position x="573" y="726"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,I,0" marked="false">
-        <position x="532" y="908"/>
+        <position x="274" y="636"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,I,1" marked="false">
-        <position x="877" y="525"/>
+        <position x="308" y="360"/>
         <size width="40" height="40"/>
     </state>
     <state name="B,I,2" marked="false">
-        <position x="262" y="77"/>
+        <position x="498" y="90"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,B,0" marked="false">
-        <position x="858" y="615"/>
+        <position x="560" y="816"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,B,1" marked="false">
-        <position x="349" y="49"/>
+        <position x="472" y="543"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,B,2" marked="false">
-        <position x="60" y="698"/>
+        <position x="679" y="726"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,C,0" marked="false">
-        <position x="619" y="77"/>
+        <position x="560" y="906"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,C,1" marked="false">
-        <position x="23" y="615"/>
+        <position x="350" y="636"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,C,2" marked="false">
-        <position x="349" y="908"/>
+        <position x="630" y="816"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,I,0" marked="false">
-        <position x="699" y="834"/>
+        <position x="503" y="726"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,I,1" marked="false">
-        <position x="699" y="123"/>
+        <position x="509" y="450"/>
         <size width="40" height="40"/>
     </state>
     <state name="C,I,2" marked="false">
-        <position x="4" y="525"/>
+        <position x="593" y="636"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,B,0" marked="false">
-        <position x="4" y="433"/>
+        <position x="204" y="636"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,B,1" marked="false">
-        <position x="821" y="698"/>
+        <position x="105" y="360"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,B,2" marked="false">
-        <position x="440" y="40"/>
+        <position x="402" y="543"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,C,0" marked="false">
-        <position x="182" y="834"/>
+        <position x="379" y="726"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,C,1" marked="false">
-        <position x="767" y="185"/>
+        <position x="254" y="906"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,C,2" marked="false">
-        <position x="23" y="343"/>
+        <position x="463" y="636"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,I1,0" marked="true" initial="true">
-        <position x="440" y="918"/>
+        <position x="196" y="540"/>
         <size width="46" height="46"/>
         <initialPosition x="-28" y="-28"/>
     </state>
     <state name="I,I1,1" marked="false">
-        <position x="262" y="880"/>
+        <position x="112" y="726"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,I1,2" marked="false">
-        <position x="821" y="259"/>
+        <position x="177" y="450"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,I2,0" marked="false">
-        <position x="114" y="185"/>
+        <position x="272" y="543"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,I2,1" marked="false">
-        <position x="619" y="880"/>
+        <position x="212" y="726"/>
         <size width="40" height="40"/>
     </state>
     <state name="I,I2,2" marked="false">
-        <position x="532" y="49"/>
+        <position x="319" y="450"/>
         <size width="40" height="40"/>
     </state>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="B,B,0" to="I,B,1" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="B,B,0" to="C,B,0" legal="true">
+        <pathPoint x="641" y="380"/>
+        <pathPoint x="726" y="470"/>
+        <pathPoint x="732" y="563"/>
+        <pathPoint x="693" y="656"/>
+        <pathPoint x="649" y="746"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="B,B,0" to="B,I,1" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="B,B,0" to="B,C,0" legal="true">
+        <pathPoint x="542" y="380"/>
+        <pathPoint x="609" y="470"/>
+        <pathPoint x="642" y="563"/>
+        <pathPoint x="533" y="656"/>
+        <pathPoint x="349" y="746"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="B,B,1" to="I,B,2" legal="true">
+        <pathPoint x="406" y="110"/>
+        <pathPoint x="439" y="200"/>
+        <pathPoint x="466" y="290"/>
+        <pathPoint x="457" y="380"/>
+        <pathPoint x="449" y="470"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="B,B,1" to="C,B,1" legal="true">
+        <pathPoint x="300" y="110"/>
+        <pathPoint x="227" y="200"/>
+        <pathPoint x="208" y="290"/>
+        <pathPoint x="222" y="380"/>
+        <pathPoint x="253" y="470"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="B,B,1" to="B,I,2" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="B,B,1" to="B,C,1" legal="true">
+        <pathPoint x="440" y="110"/>
+        <pathPoint x="510" y="200"/>
+        <pathPoint x="520" y="290"/>
+        <pathPoint x="572" y="380"/>
+        <pathPoint x="579" y="470"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="B,B,2" to="C,B,2" legal="true">
+        <pathPoint x="690" y="290"/>
+        <pathPoint x="746" y="380"/>
+        <pathPoint x="756" y="470"/>
+        <pathPoint x="762" y="563"/>
+        <pathPoint x="730" y="656"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="B,B,2" to="B,C,2" legal="true">
+        <pathPoint x="660" y="290"/>
+        <pathPoint x="689" y="380"/>
+        <pathPoint x="696" y="470"/>
+        <pathPoint x="702" y="563"/>
+        <pathPoint x="663" y="656"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="B,B,2" to="B,B,0" legal="true">
@@ -161,9 +196,9 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,C,0" to="B,C,0" legal="true">
-        <pathPoint x="877" y="403"/>
-        <pathPoint x="897" y="388"/>
-        <pathPoint x="917" y="403"/>
+        <pathPoint x="390" y="786"/>
+        <pathPoint x="410" y="771"/>
+        <pathPoint x="430" y="786"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="B,C,1" to="I,C,2" legal="true">
@@ -173,18 +208,18 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,C,1" to="B,C,1" legal="true">
-        <pathPoint x="182" y="93"/>
-        <pathPoint x="202" y="78"/>
-        <pathPoint x="222" y="93"/>
+        <pathPoint x="542" y="513"/>
+        <pathPoint x="562" y="498"/>
+        <pathPoint x="582" y="513"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="B,C,2" to="C,C,2" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,C,2" to="B,C,2" legal="true">
-        <pathPoint x="114" y="743"/>
-        <pathPoint x="134" y="728"/>
-        <pathPoint x="154" y="743"/>
+        <pathPoint x="573" y="696"/>
+        <pathPoint x="593" y="681"/>
+        <pathPoint x="613" y="696"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="B,C,2" to="B,C,0" legal="true">
@@ -197,6 +232,9 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,I,0" to="B,B,0" legal="true">
+        <pathPoint x="372" y="563"/>
+        <pathPoint x="419" y="470"/>
+        <pathPoint x="378" y="380"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="B,I,1" to="I,I2,2" legal="true">
@@ -206,33 +244,49 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,I,1" to="B,B,1" legal="true">
+        <pathPoint x="287" y="290"/>
+        <pathPoint x="298" y="200"/>
+        <pathPoint x="334" y="110"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b1" from="B,I,2" to="C,I,2" legal="true">
+        <pathPoint x="570" y="200"/>
+        <pathPoint x="599" y="290"/>
+        <pathPoint x="611" y="380"/>
+        <pathPoint x="648" y="470"/>
+        <pathPoint x="672" y="563"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="B,I,2" to="B,B,2" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="B,I,2" to="B,I,0" legal="true">
+        <pathPoint x="540" y="200"/>
+        <pathPoint x="436" y="290"/>
+        <pathPoint x="408" y="380"/>
+        <pathPoint x="389" y="470"/>
+        <pathPoint x="342" y="563"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,B,0" to="C,B,0" legal="true">
-        <pathPoint x="858" y="585"/>
-        <pathPoint x="878" y="570"/>
-        <pathPoint x="898" y="585"/>
+        <pathPoint x="560" y="786"/>
+        <pathPoint x="580" y="771"/>
+        <pathPoint x="600" y="786"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="C,B,0" to="C,I,1" legal="true">
+        <pathPoint x="473" y="746"/>
+        <pathPoint x="563" y="656"/>
+        <pathPoint x="612" y="563"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="C,B,0" to="C,C,0" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,B,1" to="C,B,1" legal="true">
-        <pathPoint x="349" y="19"/>
-        <pathPoint x="369" y="4"/>
-        <pathPoint x="389" y="19"/>
+        <pathPoint x="472" y="513"/>
+        <pathPoint x="492" y="498"/>
+        <pathPoint x="512" y="513"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="C,B,1" to="C,I,2" legal="true">
@@ -242,9 +296,9 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,B,2" to="C,B,2" legal="true">
-        <pathPoint x="60" y="668"/>
-        <pathPoint x="80" y="653"/>
-        <pathPoint x="100" y="668"/>
+        <pathPoint x="679" y="696"/>
+        <pathPoint x="699" y="681"/>
+        <pathPoint x="719" y="696"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="C,B,2" to="C,C,2" legal="true">
@@ -254,66 +308,66 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,C,0" to="C,C,0" legal="true">
-        <pathPoint x="619" y="47"/>
-        <pathPoint x="639" y="32"/>
-        <pathPoint x="659" y="47"/>
+        <pathPoint x="560" y="876"/>
+        <pathPoint x="580" y="861"/>
+        <pathPoint x="600" y="876"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,C,0" to="C,C,0" legal="true">
-        <pathPoint x="607" y="27"/>
-        <pathPoint x="639" y="2"/>
-        <pathPoint x="671" y="27"/>
+        <pathPoint x="548" y="856"/>
+        <pathPoint x="580" y="831"/>
+        <pathPoint x="612" y="856"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,C,1" to="C,C,1" legal="true">
-        <pathPoint x="23" y="585"/>
-        <pathPoint x="43" y="570"/>
-        <pathPoint x="63" y="585"/>
+        <pathPoint x="350" y="606"/>
+        <pathPoint x="370" y="591"/>
+        <pathPoint x="390" y="606"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,C,1" to="C,C,1" legal="true">
-        <pathPoint x="11" y="565"/>
-        <pathPoint x="43" y="540"/>
-        <pathPoint x="75" y="565"/>
+        <pathPoint x="338" y="586"/>
+        <pathPoint x="370" y="561"/>
+        <pathPoint x="402" y="586"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,C,2" to="C,C,2" legal="true">
-        <pathPoint x="349" y="878"/>
-        <pathPoint x="369" y="863"/>
-        <pathPoint x="389" y="878"/>
+        <pathPoint x="630" y="786"/>
+        <pathPoint x="650" y="771"/>
+        <pathPoint x="670" y="786"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,C,2" to="C,C,2" legal="true">
-        <pathPoint x="337" y="858"/>
-        <pathPoint x="369" y="833"/>
-        <pathPoint x="401" y="858"/>
+        <pathPoint x="618" y="766"/>
+        <pathPoint x="650" y="741"/>
+        <pathPoint x="682" y="766"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="C,C,2" to="C,C,0" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,I,0" to="C,I,0" legal="true">
-        <pathPoint x="699" y="804"/>
-        <pathPoint x="719" y="789"/>
-        <pathPoint x="739" y="804"/>
+        <pathPoint x="503" y="696"/>
+        <pathPoint x="523" y="681"/>
+        <pathPoint x="543" y="696"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,I,0" to="C,B,0" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,I,1" to="C,I,1" legal="true">
-        <pathPoint x="699" y="93"/>
-        <pathPoint x="719" y="78"/>
-        <pathPoint x="739" y="93"/>
+        <pathPoint x="509" y="420"/>
+        <pathPoint x="529" y="405"/>
+        <pathPoint x="549" y="420"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,I,1" to="C,B,1" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="C,I,2" to="C,I,2" legal="true">
-        <pathPoint x="4" y="495"/>
-        <pathPoint x="24" y="480"/>
-        <pathPoint x="44" y="495"/>
+        <pathPoint x="593" y="606"/>
+        <pathPoint x="613" y="591"/>
+        <pathPoint x="633" y="606"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="C,I,2" to="C,B,2" legal="true">
@@ -323,6 +377,9 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,B,0" to="B,B,0" legal="true">
+        <pathPoint x="166" y="563"/>
+        <pathPoint x="147" y="470"/>
+        <pathPoint x="266" y="380"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="I,B,0" to="I,I1,1" legal="true">
@@ -332,15 +389,26 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,B,1" to="B,B,1" legal="true">
+        <pathPoint x="117" y="290"/>
+        <pathPoint x="131" y="200"/>
+        <pathPoint x="252" y="110"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d2" from="I,B,1" to="I,I1,2" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="I,B,1" to="I,C,1" legal="true">
+        <pathPoint x="117" y="470"/>
+        <pathPoint x="136" y="563"/>
+        <pathPoint x="159" y="656"/>
+        <pathPoint x="182" y="746"/>
+        <pathPoint x="212" y="836"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,B,2" to="B,B,2" legal="true">
+        <pathPoint x="479" y="470"/>
+        <pathPoint x="512" y="380"/>
+        <pathPoint x="629" y="290"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="b2" from="I,B,2" to="I,C,2" legal="true">
@@ -353,27 +421,30 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I,C,0" to="I,C,0" legal="true">
-        <pathPoint x="182" y="804"/>
-        <pathPoint x="202" y="789"/>
-        <pathPoint x="222" y="804"/>
+        <pathPoint x="379" y="696"/>
+        <pathPoint x="399" y="681"/>
+        <pathPoint x="419" y="696"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,C,1" to="B,C,1" legal="true">
+        <pathPoint x="274" y="836"/>
+        <pathPoint x="306" y="746"/>
+        <pathPoint x="433" y="656"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I,C,1" to="I,C,1" legal="true">
-        <pathPoint x="767" y="155"/>
-        <pathPoint x="787" y="140"/>
-        <pathPoint x="807" y="155"/>
+        <pathPoint x="254" y="876"/>
+        <pathPoint x="274" y="861"/>
+        <pathPoint x="294" y="876"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,C,2" to="B,C,2" legal="true">
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I,C,2" to="I,C,2" legal="true">
-        <pathPoint x="23" y="313"/>
-        <pathPoint x="43" y="298"/>
-        <pathPoint x="63" y="313"/>
+        <pathPoint x="463" y="606"/>
+        <pathPoint x="483" y="591"/>
+        <pathPoint x="503" y="606"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="I,C,2" to="I,C,0" legal="true">
@@ -383,9 +454,15 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,I1,1" to="B,I,1" legal="true">
+        <pathPoint x="118" y="656"/>
+        <pathPoint x="106" y="563"/>
+        <pathPoint x="283" y="470"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="I,I1,2" to="B,I,2" legal="true">
+        <pathPoint x="175" y="380"/>
+        <pathPoint x="178" y="290"/>
+        <pathPoint x="349" y="200"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="r" from="I,I1,2" to="I,I1,0" legal="true">
@@ -395,6 +472,9 @@
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I,I2,1" to="I,B,1" legal="true">
+        <pathPoint x="88" y="656"/>
+        <pathPoint x="76" y="563"/>
+        <pathPoint x="87" y="470"/>
         <labelPosition x="500" y="0"/>
     </transition>
     <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a2" from="I,I2,2" to="I,B,2" legal="true">
