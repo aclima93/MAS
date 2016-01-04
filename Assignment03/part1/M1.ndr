@@ -1,0 +1,11 @@
+t 100.0 25.0 a1 0 w n
+t 100.0 100.0 d1 0 w n
+p 30.0 60.0 M1I 0 n
+p 170.0 60.0 M1B 0 n
+e M1I a1 1 n
+e d1 M1I 1 n
+e M1B d1 1 n
+e a1 M1B 1 n
+h buffer
+
+

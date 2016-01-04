@@ -1,0 +1,8 @@
+t 25.0 50.0 r 0 w n
+p 105.0 50.0 OC 0 n
+t 180.0 50.0 l 0 w n
+e OC l 2 n
+e r OC 2 n
+h OC
+
+
