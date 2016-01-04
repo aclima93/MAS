@@ -9,28 +9,24 @@ p 225.0 355.0 M2I 1 n
 p 390.0 190.0 AC 0 n
 t 455.0 190.0 r 0 w n
 p 225.0 470.0 P 10 n
-p 525.0 190.0 OC 0 n
 p 30.0 200.0 IC 0 n
-t 390.0 365.0 l 0 w n
 t 90.0 350.0 a 0 w n
-e a1 M1B 1 n
-e M1B d1 1 n
-e d1 M1I 1 n
-e M1I a1 1 n
-e M2I a2 1 n
-e d2 M2I 1 n
-e M2B d2 1 n
-e a2 M2B 1 n
-e d1 AC 1 n
-e d2 AC 1 n
-e AC r 2 n
-e r OC 1 n
-e IC a1 1 n
-e IC a2 1 n
-e a IC 1 n
+e r P 2 n
 e P a 1 n
-e l P 2 n
-e OC l 2 n
+e a IC 1 n
+e IC a2 1 n
+e IC a1 1 n
+e AC r 2 n
+e d2 AC 1 n
+e d1 AC 1 n
+e a2 M2B 1 n
+e M2B d2 1 n
+e d2 M2I 1 n
+e M2I a2 1 n
+e M1I a1 1 n
+e d1 M1I 1 n
+e M1B d1 1 n
+e a1 M1B 1 n
 h R0
 
 
