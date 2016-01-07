@@ -1,10 +1,10 @@
 p 105.0 50.0 P 0 n
 t 180.0 50.0 a 0 w n
-t 25.0 50.0 l 0 w n
-e P a 1 n
-e l P 2 n
+t 25.0 50.0 r 0 w n
 e P a 1 n
 e P a 1 n
+e P a 1 n
+e r P 2 n
 e P a 1 n
 h P
 

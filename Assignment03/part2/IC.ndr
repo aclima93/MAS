@@ -1,10 +1,10 @@
 t 25.0 55.0 a 0 w n
-t 175.0 75.0 a2 0 w n
-t 175.0 25.0 a1 0 w n
+t 175.0 75.0 a2pu 0 w n
+t 175.0 25.0 a1pu 0 w n
 p 105.0 55.0 IC 0 n
+e IC a1pu 1 n
+e IC a2pu 1 n
 e a IC 1 n
-e IC a2 1 n
-e IC a1 1 n
 h IC
 
 
