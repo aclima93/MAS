@@ -1,0 +1,11 @@
+t 100.0 25.0 pu 0 w n
+t 100.0 100.0 do 0 w n
+p 170.0 60.0 RAB 0 n
+p 30.0 60.0 RAI 0 n
+e pu RAB 1 n
+e RAB do 1 n
+e do RAI 1 n
+e RAI pu 1 n
+h RA_simplified
+
+

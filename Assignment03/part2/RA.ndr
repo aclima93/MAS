@@ -1,0 +1,39 @@
+t 450.0 295.0 d2do 0 w n
+t 340.0 295.0 d2pu 0 w n
+t 100.0 295.0 rpu 0 w n
+t 520.0 50.0 d1do 0 w n
+t 405.0 50.0 d1pu 0 w n
+t 135.0 50.0 a2do 0 w n
+t 325.0 45.0 a1do 0 w n
+t 225.0 45.0 a1pu 0 w n
+t 25.0 50.0 a2pu 0 w n
+p 275.0 50.0 a1 0 n
+p 80.0 50.0 a2 0 n
+p 460.0 50.0 d1 0 n
+p 155.0 295.0 r 0 n
+t 210.0 295.0 rdo 0 w n
+p 395.0 295.0 d2 0 n
+p 275.0 205.0 RAI 1 n
+e rdo RAI 1 n
+e d2do RAI 1 n
+e d1do RAI 1 n
+e a2do RAI 1 n
+e a1do RAI 1 n
+e RAI rpu 1 n
+e RAI d2pu 1 n
+e RAI d1pu 1 n
+e RAI a2pu 1 n
+e RAI a1pu 1 n
+e r rdo 1 n
+e rpu r 1 n
+e d2 d2do 1 n
+e d2pu d2 1 n
+e d1 d1do 1 n
+e d1pu d1 1 n
+e a2 a2do 1 n
+e a2pu a2 1 n
+e a1pu a1 1 n
+e a1 a1do 1 n
+h RA
+
+
