@@ -1,0 +1,11 @@
+t 100.0 25.0 a2 0 w n
+t 100.0 100.0 d2 0 w n
+p 30.0 60.0 M2I 0 n
+p 170.0 60.0 M2B 0 n
+e a2 M2B 1 n
+e M2B d2 1 n
+e d2 M2I 1 n
+e M2I a2 1 n
+h M2
+
+
