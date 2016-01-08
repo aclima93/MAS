@@ -13,7 +13,7 @@ t 630.0 495.0 d2pu 0 w n
 p 550.0 495.0 d2 0 s
 p 545.0 160.0 d1 0 n
 p 860.0 330.0 r 0 e
-p 470.0 335.0 RAI 1 n
+p 470.0 335.0 RAI 1 e
 p 470.0 50.0 M1I 1 n
 p 470.0 600.0 M2B 0 n
 t 125.0 210.0 a1pu 0 w n
@@ -22,50 +22,50 @@ p 195.0 160.0 a1 0 n
 p 200.0 495.0 a2 0 s
 t 770.0 495.0 rdo 0 w n
 t 770.0 160.0 rpu 0 w n
-e a2pu 0.7513487384 118.0042372 M2I 0.6499239628 95.21029356 1 n
-e M2I 0.6506081281 136.8247054 a2pu 0.7510072963 158.0031645 1 n
-e a1pu 0.251263108 126.0039682 M1I 0.5 164.0 1 n
-e M1I 0.5 90.0 a1pu 0.2519408178 82.00609733 1 n
-e M2I 0.3207315141 69.7782201 a1pu 0.8962036961 69.20260111 1 n
-e a1pu 0.8300299826 68.47627326 M2I 0.4203523709 72.9451849 1 n
-e M1B 0.6829290501 63.56099433 a2pu 0.08719518916 69.11584478 1 n
-e a2pu 0.1739508256 63.0634601 M1B 0.575832145 69.77105417 1 n
-e RAI d1pu 1 n
-e d1do RAI 1 n
-e a1do RAI 1 n
-e RAI a1pu 1 n
-e RAI a2pu 1 n
-e a2do RAI 1 n
-e RAI d2pu 1 n
-e d2do RAI 1 n
-e rdo RAI 1 n
-e RAI rpu 1 n
-e a2 a2do 1 n
-e a2pu a2 1 n
-e a1 a1do 1 n
-e a1pu a1 1 n
-e IC a2pu 1 n
-e IC a1pu 1 n
-e r rdo 1 n
-e rpu r 1 n
-e AC rpu 2 w
-e d1 d1do 1 n
-e d1pu d1 1 n
-e M1B d1pu 1 n
-e d2 d2do 1 n
-e d2pu d2 1 n
-e M2B d2pu 1 n
-e a1do M1B 1 n
-e d1do M1I 1 n
-e M1I a1do 1 n
-e M2I a2do 1 n
-e d2do M2I 1 n
-e a2do M2B 1 n
-e d1do AC 1 n
-e d2do AC 1 n
-e a IC 1 n
-e P a 1 n
 e rdo P 2 s
+e P a 1 n
+e a IC 1 n
+e d2do AC 1 n
+e d1do AC 1 n
+e a2do M2B 1 n
+e d2do M2I 1 n
+e M2I a2do 1 n
+e M1I a1do 1 n
+e d1do M1I 1 n
+e a1do M1B 1 n
+e M2B d2pu 1 n
+e d2pu d2 1 n
+e d2 d2do 1 n
+e M1B d1pu 1 n
+e d1pu d1 1 n
+e d1 d1do 1 n
+e AC rpu 2 w
+e rpu r 1 n
+e r rdo 1 n
+e IC a1pu 1 n
+e IC a2pu 1 n
+e a1pu a1 1 n
+e a1 a1do 1 n
+e a2pu a2 1 n
+e a2 a2do 1 n
+e RAI rpu 1 n
+e rdo RAI 1 n
+e d2do RAI 1 n
+e RAI d2pu 1 n
+e a2do RAI 1 n
+e RAI a2pu 1 n
+e RAI a1pu 1 n
+e a1do RAI 1 n
+e d1do RAI 1 n
+e RAI d1pu 1 n
+e a2pu 0.1739508256 63.0634601 M1B 0.575832145 69.77105417 1 n
+e M1B 0.6829290501 63.56099433 a2pu 0.08719518916 69.11584478 1 n
+e a1pu 0.8300299826 68.47627326 M2I 0.4203523709 72.9451849 1 n
+e M2I 0.3207315141 69.7782201 a1pu 0.8962036961 69.20260111 1 n
+e M1I 0.5 90.0 a1pu 0.2519408178 82.00609733 1 n
+e a1pu 0.251263108 126.0039682 M1I 0.5 164.0 1 n
+e M2I 0.6506081281 136.8247054 a2pu 0.7510072963 158.0031645 1 n
+e a2pu 0.7513487384 118.0042372 M2I 0.6499239628 95.21029356 1 n
 h R1
 
 

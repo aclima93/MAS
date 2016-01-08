@@ -1,34 +1,34 @@
-t 130.0 145.0 a1 0 w n
-t 135.0 245.0 a2 0 w n
-t 330.0 245.0 d2 0 w n
-p 235.0 145.0 M1I 2 n
-p 235.0 50.0 M1B 0 n
-p 230.0 320.0 M2B 0 n
-p 230.0 245.0 M2I 1 n
-t 330.0 145.0 d1 0 w n
-p 435.0 195.0 AC 0 n
+t 100.0 145.0 a1 0 w n
+t 105.0 245.0 a2 0 w n
+t 300.0 245.0 d2 0 w n
+p 205.0 145.0 M1I 2 n
+p 205.0 50.0 M1B 0 n
+p 200.0 320.0 M2B 0 n
+p 200.0 245.0 M2I 1 n
+t 300.0 145.0 d1 0 w n
+p 375.0 195.0 AC 0 n
 p 30.0 195.0 IC 0 n
-p 230.0 395.0 P 10 n
-t 435.0 325.0 r 0 w n
+p 200.0 395.0 P 10 n
+t 375.0 325.0 r 0 w n
 t 30.0 340.0 a 0 w n
-e a2 M1I 1 n
-e a1 M2I 1 n
-e a1 M1B 1 n
-e M1B d1 1 n
-e d1 M1I 1 n
-e M1I a1 2 n
-e M2I a2 2 n
-e d2 M2I 1 n
-e M2B d2 1 n
-e a2 M2B 1 n
-e d1 AC 1 n
-e d2 AC 1 n
-e AC r 2 n
-e IC a1 1 n
-e IC a2 1 n
-e a IC 1 n
-e P a 1 n
 e r P 2 n
+e P a 1 n
+e a IC 1 n
+e IC a2 1 n
+e IC a1 1 n
+e AC r 2 w
+e d2 AC 1 n
+e d1 AC 1 n
+e a2 M2B 1 n
+e M2B d2 1 n
+e d2 M2I 1 n
+e M2I a2 2 ne
+e M1I a1 2 ne
+e d1 M1I 1 n
+e M1B d1 1 n
+e a1 M1B 1 n
+e a1 M2I 1 n
+e a2 M1I 1 n
 h R2
 
 
