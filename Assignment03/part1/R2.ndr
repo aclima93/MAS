@@ -1,34 +1,48 @@
-t 100.0 145.0 a1 0 w n
-t 105.0 245.0 a2 0 w n
-t 300.0 245.0 d2 0 w n
-p 205.0 145.0 M1I 2 n
-p 205.0 50.0 M1B 0 n
-p 200.0 320.0 M2B 0 n
-p 200.0 245.0 M2I 1 n
-t 300.0 145.0 d1 0 w n
-p 375.0 195.0 AC 0 n
-p 30.0 195.0 IC 0 n
-p 200.0 395.0 P 10 n
-t 375.0 325.0 r 0 w n
-t 30.0 340.0 a 0 w n
-e r P 2 n
-e P a 1 n
-e a IC 1 n
-e IC a2 1 n
-e IC a1 1 n
-e AC r 2 w
-e d2 AC 1 n
-e d1 AC 1 n
-e a2 M2B 1 n
-e M2B d2 1 n
-e d2 M2I 1 n
-e M2I a2 2 ne
-e M1I a1 2 ne
-e d1 M1I 1 n
-e M1B d1 1 n
+t 105.0 310.0 a2 0 w n
+p 270.0 310.0 M2I 1 n
+p 585.0 240.0 AC 0 n
+p 30.0 240.0 IC 0 n
+t 105.0 160.0 a1 0 w n
+p 270.0 160.0 M1I 2 s
+p 275.0 420.0 M2B 0 s
+p 265.0 50.0 M1B 0 n
+t 480.0 420.0 d2F 0 w n
+t 475.0 50.0 d1F 0 w n
+t 585.0 520.0 r 0 w n
+t 30.0 520.0 a 0 w n
+p 275.0 520.0 P 10 n
+t 480.0 160.0 d1L 0 w n
+t 480.0 310.0 d2L 0 w n
+e M2B d2L 1 n
+e d2L M2I 1 n
+e d1L M1I 1 n
+e M1B d1L 1 n
+e d2L 0.3493163537 61.61168712 M1I 0.9557072344 58.24087903 2 e
+e d1L 0.6525729042 57.42821606 M2I 0.05120819116 56.92099788 2 e
+e M1I 0.8986965716 57.20139847 d2L 0.4105674059 63.81222462 1 n
+e M2I 0.09720005609 48.82622246 d1L 0.6091372413 71.06335202 1 n
+e M1B d2F 1 n
+e M2B d1F 1 n
+e d2F M1I 1 n
+e d1F M2I 1 n
+e d2F M2I 2 sw
+e M2B d2F 1 n
+e d1F M1I 2 nw
+e M1B d1F 1 n
+e d1F AC 1 n
+e d1L AC 1 n
+e d2L AC 1 n
+e d2F AC 1 n
 e a1 M1B 1 n
-e a1 M2I 1 n
-e a2 M1I 1 n
+e M1I a1 2 s
+e M2I a2 2 n
+e a2 M2B 1 n
+e AC r 2 w
+e IC a1 1 n
+e IC a2 1 n
+e a IC 1 n
+e P a 1 n
+e r P 2 n
 h R2
 
 
