@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
+	<state name="0" marked="true" initial="true">
+		<size width="40" height="40"/>
+	</state>
+	<state name="1" marked="false">
+		<size width="40" height="40"/>
+	</state>
+	<state name="2" marked="false">
+		<size width="40" height="40"/>
+	</state>
+	<state name="3" marked="false">
+		<size width="40" height="40"/>
+	</state>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="0" to="1" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="1" to="2" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1pu" from="1" to="3" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="2" to="4" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1pu" from="2" to="5" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="3" to="5" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1do" from="3" to="6" legal="true">
+		<labelPosition x="500" y="0"/>
+	</transition>
+	<event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a" observable="true" controllable="true">
+		<AgentProperty observable="true" controllable="true"/>
+	</event>
+	<event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a1pu" observable="true" controllable="true">
+		<AgentProperty observable="true" controllable="true"/>
+	</event>
+	<event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a1do" observable="true" controllable="true">
+		<AgentProperty observable="true" controllable="true"/>
+	</event>
+	<initial>0</initial>
+</XmlAutomaton>
