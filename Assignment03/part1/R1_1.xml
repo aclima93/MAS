@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlAutomaton Stochastic="false" numberOfAgents="1" hasOutput="false">
+    <state name="IC0,M1B,M2I,AC0,P0" marked="false">
+        <position x="50" y="226"/>
+        <size width="130" height="40"/>
+    </state>
+    <state name="IC0,M1I,M2I,AC0,P1" marked="true" initial="true">
+        <position x="50" y="40"/>
+        <size width="130" height="46"/>
+        <initialPosition x="-28" y="-28"/>
+    </state>
+    <state name="IC0,M1I,M2I,AC1,P0" marked="false">
+        <position x="50" y="316"/>
+        <size width="130" height="40"/>
+    </state>
+    <state name="IC1,M1I,M2I,AC0,P0" marked="false">
+        <position x="50" y="136"/>
+        <size width="130" height="40"/>
+    </state>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="d1" from="IC0,M1B,M2I,AC0,P0" to="IC0,M1I,M2I,AC1,P0" legal="true">
+        <labelPosition x="500" y="0"/>
+    </transition>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a" from="IC0,M1I,M2I,AC0,P1" to="IC1,M1I,M2I,AC0,P0" legal="true">
+        <labelPosition x="500" y="0"/>
+    </transition>
+    <transition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlTransition" name="a1" from="IC1,M1I,M2I,AC0,P0" to="IC0,M1B,M2I,AC0,P0" legal="true">
+        <labelPosition x="500" y="0"/>
+    </transition>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a" observable="true" controllable="true">
+        <AgentProperty observable="true" controllable="true"/>
+    </event>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="a1" observable="true" controllable="true">
+        <AgentProperty observable="true" controllable="true"/>
+    </event>
+    <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="XmlEvent" name="d1" observable="true" controllable="true">
+        <AgentProperty observable="true" controllable="true"/>
+    </event>
+    <initial>IC0,M1I,M2I,AC0,P1</initial>
+</XmlAutomaton>
